@@ -16,7 +16,7 @@
                 if(data.success == 1) {
                     var array = data.rs;
                     for (var obj in array) {
-                        $("#department").append("<option value='"+array[obj].id+"'>"+array[obj].department_code+"_"+array[obj].department_name+"</option>");
+                        $("#department").append("<option value='"+array[obj].department_id+"'>"+array[obj].department_name+"</option>");
 
                     }
                 }
