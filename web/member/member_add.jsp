@@ -35,8 +35,6 @@
                var vip_start_time =$('#vip_start_time').val();
                var vip_end_time = $('#vip_end_time').val();
                var post =$('#post').val();
-               var pwd =$("#pwd").val();
-               var pwd2 =$("#pwd2").val();
                if(nick_name ==""){
                    layer.msg("账号不能为空！");
                    return false;
@@ -72,22 +70,10 @@
                        return false;
                    }
                }
-               if(pwd.length < 6){
-                   layer.msg("密码长度最低六位数！");
-                   return false;
-               }
-               if(pwd2 ==""){
-                   layer.msg("请输入确认密码！");
-                   return false;
-               }
-               if(pwd !=pwd2){
-                   layer.msg("输入密码不一致！");
-                   return false;
-               }
                 $.ajax({
                     url: "${pageContext.request.contextPath}/newMember?method=NewMembersAdd",
                   /*  data: "method=MembersAdd&jsonString="+JSON.stringify($('form').serializeObject()),*/
-                    data:{"account_number":account_number,"nick_name": nick_name,"phone":phone,"real_name": real_name,"member_level":member_level,"vip_start_time":vip_start_time,"vip_end_time":vip_end_time,"password":pwd},
+                    data:{"account_number":account_number,"nick_name": nick_name,"phone":phone,"real_name": real_name,"member_level":member_level,"vip_start_time":vip_start_time,"vip_end_time":vip_end_time},
                     contentType:"application/json",  //缺失会出现URL编码，无法转成json对象
                     cache: true,
                     async : false,
@@ -195,20 +181,6 @@
                     <div class="layui-input-block">
                         <input type="text" name="nick_name"  id="nick_name" required lay-verify="required" placeholder="请输入手机号" autocomplete="off"
                                class="layui-input">
-                    </div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-inline">
-                    <label class="layui-form-label">密码</label>
-                    <div class="layui-input-inline">
-                        <input type="password" name="password" id="pwd" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">确认密码</label>
-                    <div class="layui-input-inline">
-                        <input type="password" name="password2" id="pwd2" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </div>

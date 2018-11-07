@@ -7,6 +7,7 @@ import action.sqlhelper.MemberSql;
 import cache.ResultPoor;
 import common.StringHandler;
 import servlet.BaseServlet;
+import utils.StringUtil;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,10 +21,10 @@ import javax.servlet.http.HttpSession;
 public class NewMemberAction  extends BaseServlet {
 
     //会员条件查询
-    public String getMemberList(String id,String nick_name, String phone, String status, String member_level,String registration_time, String endDate, String source, String page, String limit) throws Exception {
+    public String getMemberList(String id,String nick_name, String phone, String status, String member_level,String registration_time, String endDate, String page, String limit) throws Exception {
         int pageI = Integer.valueOf(page);
         int end = Integer.valueOf(limit);
-        return NewMemberService.getMemberList(id,nick_name, phone, status,member_level, registration_time, endDate, source, (pageI - 1) * end, end);
+        return NewMemberService.getMemberList(id,nick_name, phone, status,member_level, registration_time, endDate, (pageI - 1) * end, end);
     }
 
     //更新会员状态（禁用，启用）
@@ -51,8 +52,9 @@ public class NewMemberAction  extends BaseServlet {
     }
 
     //添加会员
-    public String NewMembersAdd(String account_number,String nick_name, String phone, String real_name, String member_level, String vip_start_time, String vip_end_time, String password) {
-        String result = NewMemberService.NewMembersAdd(account_number,nick_name, phone, real_name, member_level, vip_start_time, vip_end_time, password);
+    public String NewMembersAdd(String account_number,String nick_name, String phone, String real_name, String member_level, String vip_start_time, String vip_end_time) {
+        String randomCode = StringUtil.randomCode();
+        String result = NewMemberService.NewMembersAdd(account_number,nick_name, phone, real_name, member_level, vip_start_time, vip_end_time,randomCode);
         return result;
     }
 

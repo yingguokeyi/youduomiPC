@@ -231,6 +231,17 @@ public class StringUtil extends StringUtils {
             sb.append(base.charAt(number));  
         }  
         return sb.toString();  
-       } 
+       }
+
+	public static String randomCode() {
+
+		Random random = new Random();
+		String result="";
+		for (int i=0;i<6;i++){
+			result+=random.nextInt(10);
+		}
+		System.out.println("随机邀请码："+result);
+		return result;
+	}
 
 }

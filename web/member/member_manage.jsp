@@ -51,7 +51,7 @@
                         return index;
                     }}
                     ,{field:'registration_time', width:150, title: '注册时间',templet: '#create_timeTpl',align:'center'}
-                    ,{field:'source', width:150, title: '注册来源',templet:'#sourceTpl',align:'center'}
+//                    ,{field:'source', width:150, title: '注册来源',templet:'#sourceTpl',align:'center'}
 //                    ,{field:'wealth', width:150, title: '操作',toolbar:"#barDemo",align:'center'}
                 ]]
                 ,limit:20
@@ -72,7 +72,7 @@
                 var status = $('#status');
                 var registration_time = $('#registration_time');
                 var endDate = $('#endDate');
-                var source = $('#source');
+//                var source = $('#source');
                 var member_level = $('#member_level');
                 table.reload('test', {
                     page: {
@@ -84,7 +84,7 @@
                         status: status.val(),
                         registration_time: registration_time.val(),
                         endDate: endDate.val(),
-                        source: source.val(),
+//                        source: source.val(),
                         member_level: member_level.val()
                     }
                 });
@@ -347,9 +347,6 @@
                                 }
 //                                body.contents().find("#registration_time").val(array[0].registration_time);
                                 body.contents().find("#source").val(array[0].source);
-                                body.contents().find("#pwd").val(array[0].password);
-                                body.contents().find("#pwd1").val(array[0].password);
-                                body.contents().find("#sex").val(array[0].sex);
                             } else {
                                 layer.msg("异常");
                             }
@@ -515,18 +512,18 @@
                         </div>
                     </div>
 
-                    <div class="layui-inline">
-                        <label class="layui-form-label">注册来源</label>
-                        <div class="layui-input-inline"  >
-                            <select name="source" id="source" lay-filter="aihao">
-                                <option value=""></option>
-                                <option value="0">App-ios</option>
-                                <option value="2">App-android</option>
-                                <option value="1">小程序</option>
-                                <option value="3">运营后台</option>
-                            </select>
-                        </div>
-                    </div>
+                    <%--<div class="layui-inline">--%>
+                        <%--<label class="layui-form-label">注册来源</label>--%>
+                        <%--<div class="layui-input-inline"  >--%>
+                            <%--<select name="source" id="source" lay-filter="aihao">--%>
+                                <%--<option value=""></option>--%>
+                                <%--<option value="0">App-ios</option>--%>
+                                <%--<option value="2">App-android</option>--%>
+                                <%--<option value="1">小程序</option>--%>
+                                <%--<option value="3">运营后台</option>--%>
+                            <%--</select>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                 </div>
 
                 <div class="layui-form-item" style="margin-bottom: 0">

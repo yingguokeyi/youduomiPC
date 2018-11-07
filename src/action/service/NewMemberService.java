@@ -19,7 +19,7 @@ import java.util.Date;
 public class NewMemberService extends BaseService {
 
     //根据条件查询会员
-    public static String getMemberList(String id,String nick_name,String phone,String status,String member_level,String registration_time1,String endDate ,String source,int page,int limit) throws Exception {
+    public static String getMemberList(String id,String nick_name,String phone,String status,String member_level,String registration_time1,String endDate ,int page,int limit) throws Exception {
         StringBuffer sql = new StringBuffer();
         sql.append(" select * from youduomi.t_user where 1 = 1 AND ( del_status != 1 OR del_status IS NULL) AND department_id IS NULL");
         if (id != null && !id.equals("")) {
@@ -42,9 +42,6 @@ public class NewMemberService extends BaseService {
             String eDate = Utils.transformToYYMMddHHmmss(endDate);
             System.out.println(bDate);
             sql.append(" and registration_time BETWEEN ").append(bDate).append(" and ").append(eDate);
-        }
-        if (source != null && !source.equals("")) {
-            sql.append(" and source =").append(source);
         }
         sql.append(" GROUP BY id").append(" ORDER BY registration_time DESC");
 
@@ -110,7 +107,7 @@ public class NewMemberService extends BaseService {
         return resultJson;
     }
 
-    public static String NewMembersAdd(String account_number,String nick_name, String phone, String real_name, String member_level, String vip_start_time, String vip_end_time, String password){
+    public static String NewMembersAdd(String account_number,String nick_name, String phone, String real_name, String member_level, String vip_start_time, String vip_end_time,String randomCode){
         System.out.println("===========================service=======");
         int member_levelI = Integer.valueOf(member_level);
         Date date=new Date();
@@ -128,15 +125,10 @@ public class NewMemberService extends BaseService {
         String login_name=nick_name;
         String account_numberI =("".equals(account_number) || account_number ==null ?"":account_number);
         String phoneI =("".equals(phone) || phone ==null ?"":phone);
-        String sexI = "";
-        int Lisd = sendObject(AioTcpCache.gtc, 2,"", login_name,password,"","",sexI,phoneI,1,Integer.valueOf(source));
-        String result1 = ResultPoor.getResult(Lisd);
-        JSONArray json = JSONObject.parseObject(result1).getJSONObject("result").getJSONArray("ids");
-        Integer gaia_id = json.getInteger(0);
         int source1 = Integer.parseInt(source);
         int status1 = Integer.parseInt(status);
-        int category = 1;
-        int sid = sendObjectCreate(928, login_name,gaia_id, phoneI, real_name, account_numberI, member_levelI,registration_time,source1,status1,category,bDate,eDate);
+        int category = 0;
+        int sid = sendObjectCreate(928, login_name, phoneI, real_name, account_numberI, member_levelI,registration_time,source1,status1,category,bDate,eDate,randomCode);
 
         String result = ResultPoor.getResult(sid);
         return result;
