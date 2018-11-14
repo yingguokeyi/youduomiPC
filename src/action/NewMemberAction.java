@@ -58,5 +58,11 @@ public class NewMemberAction  extends BaseServlet {
         return result;
     }
 
+    //升级会员
+    public String upMemberLevel(String s_time,String e_time,String id){
+        String res = NewMemberService.upMemberLevel(s_time,e_time,id);
+        return res;
+    }
+
 
 }

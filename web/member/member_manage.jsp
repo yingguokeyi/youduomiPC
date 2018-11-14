@@ -282,10 +282,7 @@
                 content: '${pageContext.request.contextPath}/member/member_edit.jsp',
                 yes:function(index){
                     var res = window["layui-layer-iframe" + index].selectFunc();//子窗口的方法
-                    if(res =="pwdNotSame"){
-                        layer.msg("密码错误，请重新输入！");
-                        return false;
-                    };
+
                     $.ajax({
                         url: "${pageContext.request.contextPath}/newMember?method=updateNewMember",
                         data: {'jsonData':JSON.stringify(res),'id':ids},
@@ -328,16 +325,13 @@
                                     alert("该会员没有详细信息！");
                                     return false
                                 };
-                                //  console.log(JSON.stringify(array))
                                 body.contents().find("#id").val(array[0].id);
                                 body.contents().find("#nick_name").val(array[0].nick_name);
                                 body.contents().find("#real_name").val(array[0].real_name);
-                                body.contents().find("#vip_start_time").val(array[0].vip_start_time);
-                                body.contents().find("#vip_end_time").val(array[0].vip_end_time);
                                 body.contents().find("#phone").val(array[0].phone);
                                 body.contents().find("#account_number").val(array[0].account_number);
                                 body.contents().find("#Invitation_code").val(array[0].Invitation_code);
-                                body.contents().find("#member_level").val(array[0].member_level);
+//                                body.contents().find("#member_level").val(array[0].member_level);
 
                                 var rTime = array[0].registration_time;
                                 if(rTime.length == 12){
@@ -345,7 +339,6 @@
                                     var registrationTime = "20" + et.substr(0, 2) + "-" + et.substr(2, 2) + "-" + et.substr(4, 2) + " " + et.substr(6, 2) + ":" + et.substr(8, 2) + ":" + et.substr(10, 2);
                                     body.contents().find("#registration_time").val(registrationTime);
                                 }
-//                                body.contents().find("#registration_time").val(array[0].registration_time);
                                 body.contents().find("#source").val(array[0].source);
                             } else {
                                 layer.msg("异常");
@@ -372,6 +365,124 @@
 
             });
         };
+
+        //会员升级
+
+        function upgrade(){
+            var table = layui.table;
+            var checkStatus = table.checkStatus('test');
+            var selectCount = checkStatus.data.length;
+            if(selectCount!=1){
+                layer.msg("只能选择一条数据！");
+                return false;
+            };
+            if(checkStatus.data[0].member_level == 2){
+                layer.msg("普通会员才可以升级！");
+                return false;
+            };
+            var ids =checkStatus.data[0].id;
+            layer.open({
+                type: 2,
+                title: '会员管理--会员升级',
+                shadeClose: true,
+                shade: false,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['893px', '600px'],
+                btn: ['保存','取消'],
+                content: '${pageContext.request.contextPath}/member/member_up.jsp',
+                yes:function(index){
+                    var res = window["layui-layer-iframe" + index].selectLevel();//子窗口的方法
+                    var s_time = res.vip_start_time;
+                    var e_time = res.vip_end_time;
+                    if(s_time.length == 10 ){
+                        s_time = s_time.substring(0,4)+s_time.substring(5,7)+s_time.substring(8,10) + "000000";
+                    }else{
+                        layer.msg("请填写开始时间！");
+                        return false;
+                    }
+                    if(e_time.length == 10 ){
+                        e_time = e_time.substring(0,4)+e_time.substring(5,7)+e_time.substring(8,10) + "000000";
+                    }else{
+                        layer.msg("请填写结束时间！");
+                        return false;
+                    }
+
+                    if( Number(s_time) >= Number(e_time) ){
+                        layer.msg("开始时间不能大于结束时间！");
+                        return false;
+                    }
+                    $.ajax({
+                        url: "${pageContext.request.contextPath}/newMember?method=upMemberLevel",
+                        data: {'s_time':s_time,'e_time':e_time,'id':ids},
+                        contentType:"application/json",  //缺失会出现URL编码，无法转成json对象
+                        cache: true,
+                        async : false,
+                        dataType: "json",
+                        success:function(data) {
+                            if(data.success){
+                                layer.msg('会员修改成功',{time:2000}, function(){
+                                    window.parent.location.reload();
+                                    parent.layer.closeAll('iframe');
+                                });
+                            }else{
+                                layer.msg("异常");
+                            }
+                        },
+                        error : function() {
+                            layer.alert("错误");
+                        }
+                    });
+                },
+                success: function(layero, index){
+                    $.ajax({
+                        type: "get",
+                        async : false, // 同步请求
+                        cache :true,// 不使用ajax缓存
+                        contentType : "application/json",
+                        url : "${ctx}/newMember?method=selectNewUpdata",
+                        data:{'id':ids} ,
+                        dataType : "json",
+
+                        success : function(data){
+                            var body = layer.getChildFrame('body', index); //巧妙的地方在这里哦
+                            if (data.success == 1) {
+                                var length = data.rs.length;
+                                var array = data.rs;
+                                //alert(JSON.stringify(array));
+                                if(length ==0 ){
+                                    alert("该会员没有详细信息！");
+                                    return false
+                                };
+                                body.contents().find("#id").val(array[0].id);
+                                body.contents().find("#nick_name").val(array[0].nick_name);
+                                body.contents().find("#real_name").val(array[0].real_name);
+                                body.contents().find("#vip_start_time").val(array[0].vip_start_time);
+                                body.contents().find("#vip_end_time").val(array[0].vip_end_time);
+                                body.contents().find("#phone").val(array[0].phone);
+                                body.contents().find("#account_number").val(array[0].account_number);
+                                body.contents().find("#Invitation_code").val(array[0].Invitation_code);
+                                body.contents().find("#member_level").val(array[0].member_level);
+
+                                var rTime = array[0].registration_time;
+                                if(rTime.length == 12){
+                                    var et = array[0].registration_time;
+                                    var registrationTime = "20" + et.substr(0, 2) + "-" + et.substr(2, 2) + "-" + et.substr(4, 2) + " " + et.substr(6, 2) + ":" + et.substr(8, 2) + ":" + et.substr(10, 2);
+                                    body.contents().find("#registration_time").val(registrationTime);
+                                }
+                                body.contents().find("#source").val(array[0].source);
+                            } else {
+                                layer.msg("异常");
+                            }
+                        },error : function() {
+                            layer.alert("错误");
+                        }
+
+                    })
+                }
+            });
+            layui.form.render();
+        };
+
         /**
          * 自动将form表单封装成json对象
          */
@@ -395,7 +506,6 @@
     <%-- 转时间 --%>
     <script id="create_timeTpl" type="text/html">
         {{#  if(d.registration_time !== ''){ }}
-        <%--<span style="color: rgba(10,10,10,0.46);">{{ d.registration_time.substr(0,2) }}</span>--%>
         <span style="color: rgba(10,10,10,0.46);">20{{ d.registration_time.substr(0,2) }}-{{ d.registration_time.substr(2,2) }}-{{ d.registration_time.substr(4,2) }} {{ d.registration_time.substr(6,2) }}:{{ d.registration_time.substr(8,2) }}:{{ d.registration_time.substr(10,2) }}</span>
         {{#  } else { }}
         <span style="color: rgba(10,10,10,0.46);">---</span>
@@ -434,14 +544,7 @@
         {{d.account_number}}
         {{# } }}
     </script>
-    <%--Email--%>
-    <script type="text/html" id="EmialTpl">
-        {{# if(d.e_mail ==''){}}
-        <span style="color: rgba(10,10,10,0.46);"> ----</span>
-        {{# }else { }}
-        {{d.e_mail}}
-        {{# } }}
-    </script>
+
     <%--手机号--%>
     <script type="text/html" id="telPhoneTpl">
         {{# if(d.phone ==''){}}
@@ -450,30 +553,7 @@
         {{d.phone}}
         {{# } }}
     </script>
-    <%--注册来源--%>
-    <script type="text/html" id="sourceTpl">
-        {{# if(d.source ==''){}}
-        <span style="color: rgba(10,10,10,0.46);"> ----</span>
-        {{# }else { }}
-        {{# if(d.source =='0'){}}
-        App-ios
-        {{# }else if(d.source =='1'){ }}
-        小程序
-        {{# }else if(d.source =='2'){ }}
-        App-Android
-        {{# }else if(d.source =='3'){ }}
-        运营后台
-        {{# } }}
-        {{# } }}
-    </script>
-    <%--邀请时间转换--%>
-    <script id="beInvite_timeTpl" type="text/html">
-        {{#  if(d.beInvite_date !== ''){ }}
-        <span style="color: rgba(10,10,10,0.46);">20{{ d.beInvite_date.substr(0,2) }}-{{ d.beInvite_date.substr(2,2) }}-{{ d.beInvite_date.substr(4,2) }} {{ d.beInvite_date.substr(6,2) }}:{{ d.beInvite_date.substr(8,2) }}:{{ d.beInvite_date.substr(10,2) }}</span>
-        {{#  } else { }}
-        <span style="color: rgba(10,10,10,0.46);">---</span>
-        {{#  } }}
-    </script>
+
 </head>
 <script type="text/html" id="barDemo1">
     <a class="layui-btn layui-btn-xs layui-btn-normal layui-btn-radius" lay-event="look_orders">查看订单信息</a>
@@ -512,18 +592,6 @@
                         </div>
                     </div>
 
-                    <%--<div class="layui-inline">--%>
-                        <%--<label class="layui-form-label">注册来源</label>--%>
-                        <%--<div class="layui-input-inline"  >--%>
-                            <%--<select name="source" id="source" lay-filter="aihao">--%>
-                                <%--<option value=""></option>--%>
-                                <%--<option value="0">App-ios</option>--%>
-                                <%--<option value="2">App-android</option>--%>
-                                <%--<option value="1">小程序</option>--%>
-                                <%--<option value="3">运营后台</option>--%>
-                            <%--</select>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
                 </div>
 
                 <div class="layui-form-item" style="margin-bottom: 0">
@@ -562,6 +630,7 @@
             <button class="layui-btn layui-btn-sm" onclick="m_edit()"><i class="layui-icon">&#xe642;</i>编辑</button>
             <button class="layui-btn layui-btn-sm" onclick="m_del()"><i class="layui-icon">&#xe640;</i>删除</button>
             <button class="layui-btn layui-btn-sm" onclick="m_add()"><i class="layui-icon">&#xe61f;</i>添加</button>
+            <button class="layui-btn layui-btn-sm" onclick="upgrade()"><i class="layui-icon"></i>会员升级</button>
         </div>
         <!-- 表格显示-->
         <table class="layui-hide" id="test" lay-filter="useruv"></table>

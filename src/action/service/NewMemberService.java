@@ -83,14 +83,14 @@ public class NewMemberService extends BaseService {
         String real_name = jsonObject.get("real_name").toString();
         int source = (jsonObject.get("source")==null ||"".equals(jsonObject.get("source"))? 3:(Integer.valueOf(jsonObject.get("source").toString())));
         //String birthday = jsonObject.get("birthday").toString();
-        String sTime = jsonObject.get("vip_start_time").toString();
-        String eTime = jsonObject.get("vip_end_time").toString();
+//        String sTime = jsonObject.get("vip_start_time").toString();
+//        String eTime = jsonObject.get("vip_end_time").toString();
         String account_number = jsonObject.get("account_number").toString();
-        int member_level = (jsonObject.get("member_level")==null ||"".equals(jsonObject.get("member_level"))? 1:(Integer.valueOf(jsonObject.get("member_level").toString())));
+//        int member_level = (jsonObject.get("member_level")==null ||"".equals(jsonObject.get("member_level"))? 1:(Integer.valueOf(jsonObject.get("member_level").toString())));
         //String member_level = jsonObject.get("member_level").toString();
         String password = jsonObject.get("password").toString();
         sendObject(AioTcpCache.gtc, 900,"", password, nick_name);
-        int sid = sendObjectCreate(930,nick_name,source,phone,real_name,account_number,member_level,sTime,eTime,idInt );
+        int sid = sendObjectCreate(930,nick_name,source,phone,real_name,account_number,idInt );
         String result = ResultPoor.getResult(sid);
         return result;
     }
@@ -99,8 +99,7 @@ public class NewMemberService extends BaseService {
     public static String selectNewUpdata(int id){
         System.out.println("=======selectUpdata===");
         StringBuffer sql = new StringBuffer();
-        sql.append(" SELECT u.id, u.nick_name, u.real_name, u.registration_time, u.member_level, u.parent_user_id, u.account_number, u.Invitation_code, u.`source`, u.memo, u.e_mail, g.login_name, g.`password`, g.sex, u.phone FROM youduomi.t_user u, gaia.t_inf_user g WHERE u.gaia_id = g.id");
-        sql.append(" and u.id =").append(id);
+        sql.append(" SELECT * FROM youduomi.t_user WHERE id =").append(id);
         int sid = BaseService.sendObjectBase(9999,sql.toString());
         String result = ResultPoor.getResult(sid);
         String resultJson = StringHandler.getRetString(result);
@@ -130,6 +129,15 @@ public class NewMemberService extends BaseService {
         int category = 0;
         int sid = sendObjectCreate(928, login_name, phoneI, real_name, account_numberI, member_levelI,registration_time,source1,status1,category,bDate,eDate,randomCode);
 
+        String result = ResultPoor.getResult(sid);
+        return result;
+    }
+
+    //更改会员状态
+    public static String upMemberLevel(String s_time,String e_time,String id){
+        String sTime = Utils.transformToYYMMddHHmmss(s_time);
+        String eTime = Utils.transformToYYMMddHHmmss(e_time);
+        int sid = sendObjectCreate(944, 2,sTime,eTime,id);
         String result = ResultPoor.getResult(sid);
         return result;
     }
