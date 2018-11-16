@@ -50,7 +50,11 @@
                         }
                         return index;
                     }}
-                    ,{field:'registration_time', width:150, title: '注册时间',templet: '#create_timeTpl',align:'center'}
+                    ,{field:'registration_time', width:200, title: '注册时间',align:'center',templet:function (d) {
+                        var time = d.registration_time;
+                        var index = timestampToTime(time);
+                        return index;
+                    }}
 //                    ,{field:'source', width:150, title: '注册来源',templet:'#sourceTpl',align:'center'}
 //                    ,{field:'wealth', width:150, title: '操作',toolbar:"#barDemo",align:'center'}
                 ]]
@@ -90,6 +94,8 @@
                 });
                 return false;
             });
+
+
 
 
         });
@@ -482,6 +488,27 @@
             });
             layui.form.render();
         };
+
+
+        //时间转换
+        function timestampToTime(timestamp) {
+            var date = new Date(timestamp * 1000); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            var Y = date.getFullYear() + '-';
+            var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+            var D = change(date.getDate()) + ' ';
+            var h = change(date.getHours()) + ':';
+            var m = change(date.getMinutes()) + ':';
+            var s = change(date.getSeconds());
+            return Y + M + D + h + m + s;
+        }
+        function change(t) {
+            if (t < 10) {
+                return "0" + t;
+            } else {
+                return t;
+            }
+        }
+
 
         /**
          * 自动将form表单封装成json对象

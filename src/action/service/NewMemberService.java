@@ -37,6 +37,7 @@ public class NewMemberService extends BaseService {
         if (member_level != null && !member_level.equals("") && !member_level.equals("null")) {
             sql.append(" and member_level =").append(member_level);
         }
+        sql.append(" and status =1 ");
         if ((registration_time1 != null && !registration_time1.equals("")) || (endDate!=null && !endDate.equals(""))) {
             String bDate = Utils.transformToYYMMddHHmmss(registration_time1);
             String eDate = Utils.transformToYYMMddHHmmss(endDate);
@@ -110,9 +111,10 @@ public class NewMemberService extends BaseService {
         System.out.println("===========================service=======");
         int member_levelI = Integer.valueOf(member_level);
         Date date=new Date();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date2 = df.format(date);
-        String registration_time = Utils.transformToYYMMddHHmmss(date2);
+
+        long timeStampSec = System.currentTimeMillis()/1000;
+        String registration_time = String.format("%010d", timeStampSec);
+
         String bDate = "";
         String eDate = "";
         if("2".equals(member_level)){
