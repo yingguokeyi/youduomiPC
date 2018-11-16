@@ -25,19 +25,20 @@
                 //,width: 1900
                 ,height: 580
                 ,cols: [[
-                    {type:'checkbox', fixed: 'left'}
-                    ,{field:'id', width:100, title: 'ID',  fixed: 'left',align:'center'}
+                    {type:'numbers', fixed: 'left'}
+                    ,{type:'checkbox', fixed: 'left'}
+//                    ,{field:'id', width:100, title: 'ID',  fixed: 'left',align:'center'}
                     ,{field:'user_id', width:100, title: '用户ID',fixed: 'left',align:'center'}
-                    ,{field:'bill_number', width:200, title: '小票单号',align:'center' }
-                    ,{field:'bill_type', width:100, title: '类型',align:'center'}
-                    ,{field:'nick_name', width:120, title: '会员昵称',align:'center' }
+                    ,{field:'receipts_order', width:200, title: '小票单号',align:'center' }
+                    ,{field:'pay_type', width:100, title: '类型',align:'center'}
+                    ,{field:'wx_nick_name', width:120, title: '会员昵称',align:'center' }
                     ,{field:'phone', width:120, title: '手机号',templet:'#telPhoneTpl',align:'center'}
-                    ,{field:'upload_time', width:150, title: '上传时间',align:'center',sort: true,templet:function (d) {
+                    ,{field:'create_date', width:150, title: '上传时间',align:'center',sort: true,templet:function (d) {
                         var index="";
-                        if(d.upload_time==""){
+                        if(d.create_date==""){
                             index="----";
                         }else {
-                            var index = "20" + d.upload_time.substr(0, 2) + "-" + d.upload_time.substr(2, 2) + "-" + d.upload_time.substr(4, 2) + " " + d.upload_time.substr(6, 2) + ":" + d.upload_time.substr(8, 2) + ":" + d.upload_time.substr(10, 2);
+                            var index = "20" + d.create_date.substr(0, 2) + "-" + d.create_date.substr(2, 2) + "-" + d.create_date.substr(4, 2) + " " + d.create_date.substr(6, 2) + ":" + d.create_date.substr(8, 2) + ":" + d.create_date.substr(10, 2);
                         }
                         return index;
                     }}

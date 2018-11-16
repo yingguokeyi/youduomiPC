@@ -25,8 +25,9 @@
                 //,width: 1900
                 ,height: 580
                 ,cols: [[
-                    {type:'checkbox', fixed: 'left'}
-                    ,{field:'id', width:80, title: 'ID',  fixed: 'left',align:'center'}
+                    {type:'numbers', fixed: 'left'}
+                    ,{type:'checkbox', fixed: 'left'}
+//                    ,{field:'id', width:80, title: 'ID',  fixed: 'left',align:'center'}
                     ,{field:'user_id', width:100, title: '用户ID',fixed: 'left',align:'center'}
                     ,{field:'nick_name', width:150, title: '会员昵称',align:'center' }
                     ,{field:'edit_time', width:200, title: '时间',align:'center',sort: true,templet:function (d) {
@@ -40,7 +41,7 @@
                     }}
                     ,{field:'member_type', width:100, title: '奖励类型',templet:'#member_typeTpl',align:'center'}
 
-                    ,{field:'profit', width:100, title: '余额',align:'center',templet: function (d) {
+                    ,{field:'profit', width:100, title: '金额',align:'center',templet: function (d) {
                         if (d.profit == "0") {
                             // 一样 显示一个即可
                             return "￥" + d.profit + "元";

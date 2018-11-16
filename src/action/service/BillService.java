@@ -29,9 +29,9 @@ public class BillService extends BaseService {
             String bDate = Utils.transformToYYMMddHHmmss(start_time);
             String eDate = Utils.transformToYYMMddHHmmss(end_time);
             System.out.println(bDate);
-            sql.append(" and upload_time BETWEEN ").append(bDate).append(" and ").append(eDate);
+            sql.append(" and create_date BETWEEN ").append(bDate).append(" and ").append(eDate);
         }
-        sql.append(" ORDER BY upload_time desc");
+        sql.append(" ORDER BY create_date desc");
         int sid = BaseService.sendObjectBase(9997,sql.toString(),page,limit);
         String result = ResultPoor.getResult(sid);
         String resultJson = StringHandler.getRetString(result);
@@ -84,33 +84,33 @@ public class BillService extends BaseService {
             if("1".equals(member_level) && "1".equals(parent_member_level)){
                 //下级普通会员 上级普通会员
                 String notes1 = "普通会员（"+parent_user_id+"）获得返利：0.05元";
-                int sid1 = sendObjectCreate(947, parent_user_id, 2, 5, notes1, edit_time);
+                int sid1 = sendObjectCreate(947, id,parent_user_id, 2, 5, notes1, edit_time);
                 String result3 = ResultPoor.getResult(sid1);
                 System.out.println(result3);
             }else if ("1".equals(member_level) && "2".equals(parent_member_level)){
                 //下级普通会员 上级VIP会员
                 String notes1 = "VIP会员（"+parent_user_id+"）获得返利：0.10元";
-                int sid1 = sendObjectCreate(947, parent_user_id, 2, 10, notes1, edit_time);
+                int sid1 = sendObjectCreate(947, id,parent_user_id, 2, 10, notes1, edit_time);
 
             }else if ("2".equals(member_level) && "1".equals(parent_member_level)){
                 //下级VIP会员 上级普通会员
                 String notes1 = "普通会员（"+parent_user_id+"）获得返利：0.00元";
-                int sid1 = sendObjectCreate(947, parent_user_id, 2, 0, notes1, edit_time);
+                int sid1 = sendObjectCreate(947, id,parent_user_id, 2, 0, notes1, edit_time);
 
             }else if ("2".equals(member_level) && "2".equals(parent_member_level)){
                 //下级VIP会员 上级VIP会员
                 String notes1 = "VIP会员（"+parent_user_id+"）获得返利：0.10元";
-                int sid1 = sendObjectCreate(947, parent_user_id, 2, 10, notes1, edit_time);
+                int sid1 = sendObjectCreate(947, id,parent_user_id, 2, 10, notes1, edit_time);
 
             }
 
         }
         if("1".equals(member_level)){
             String notes1 = "普通会员（"+userId+"）获得奖励：0.15元";
-            int sid1 = sendObjectCreate(947, userId, 1, 15, notes1, edit_time);
+            int sid1 = sendObjectCreate(947, id,userId, 1, 15, notes1, edit_time);
         }else if("2".equals(member_level)){
             String notes1 = "普通会员（"+userId+"）获得奖励：0.30元";
-            int sid1 = sendObjectCreate(947, userId, 1, 30, notes1, edit_time);
+            int sid1 = sendObjectCreate(947, id,userId, 1, 30, notes1, edit_time);
         }
     }
 
