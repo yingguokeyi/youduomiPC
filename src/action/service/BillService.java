@@ -73,6 +73,9 @@ public class BillService extends BaseService {
         String member_level = json.getJSONArray("rs").getJSONObject(0).getString("member_level");
         String parent_user_id = json.getJSONArray("rs").getJSONObject(0).getString("parent_user_id");
         String edit_time= BaseCache.getDateTime();
+
+
+
         //有上级邀请人
         if (parent_user_id != null && !"".equals(parent_user_id)){
             int sid2 = sendObject(946,parent_user_id);
@@ -80,37 +83,57 @@ public class BillService extends BaseService {
             String resultJson2 = StringHandler.getRetString(result2);
             JSONObject json2 = JSONObject.parseObject(resultJson2.toString());
             String parent_member_level = json2.getJSONArray("rs").getJSONObject(0).getString("member_level");
+
+            int sid3 = sendObject(956,parent_user_id);
+            String result3 = ResultPoor.getResult(sid3);
+            String resultJson3 = StringHandler.getRetString(result3);
+            JSONObject json3 = JSONObject.parseObject(resultJson3.toString());
+            int money = Integer.parseInt(json3.getJSONArray("rs").getJSONObject(0).getString("money"));
+            int balance =  Integer.parseInt(json3.getJSONArray("rs").getJSONObject(0).getString("balance"));
+
             //返利获取
             if("1".equals(member_level) && "1".equals(parent_member_level)){
                 //下级普通会员 上级普通会员
                 String notes1 = "普通会员（"+parent_user_id+"）获得返利：0.05元";
-                int sid1 = sendObjectCreate(947, id,parent_user_id, 2, 5, notes1, edit_time);
-                String result3 = ResultPoor.getResult(sid1);
-                System.out.println(result3);
+                sendObjectCreate(947, id,parent_user_id, 2, 5, notes1, edit_time);
+                sendObjectCreate(957, money+5,balance+5,parent_user_id);
+
             }else if ("1".equals(member_level) && "2".equals(parent_member_level)){
                 //下级普通会员 上级VIP会员
                 String notes1 = "VIP会员（"+parent_user_id+"）获得返利：0.10元";
-                int sid1 = sendObjectCreate(947, id,parent_user_id, 2, 10, notes1, edit_time);
+                sendObjectCreate(947, id,parent_user_id, 2, 10, notes1, edit_time);
+                sendObjectCreate(957, money+10,balance+10,parent_user_id);
 
             }else if ("2".equals(member_level) && "1".equals(parent_member_level)){
                 //下级VIP会员 上级普通会员
                 String notes1 = "普通会员（"+parent_user_id+"）获得返利：0.00元";
-                int sid1 = sendObjectCreate(947, id,parent_user_id, 2, 0, notes1, edit_time);
+                sendObjectCreate(947, id,parent_user_id, 2, 0, notes1, edit_time);
 
             }else if ("2".equals(member_level) && "2".equals(parent_member_level)){
                 //下级VIP会员 上级VIP会员
                 String notes1 = "VIP会员（"+parent_user_id+"）获得返利：0.10元";
-                int sid1 = sendObjectCreate(947, id,parent_user_id, 2, 10, notes1, edit_time);
+                sendObjectCreate(947, id,parent_user_id, 2, 10, notes1, edit_time);
+                sendObjectCreate(957, money+10,balance+10,parent_user_id);
 
             }
 
         }
+
+        int sid4 = sendObject(956,userId);
+        String result4 = ResultPoor.getResult(sid4);
+        String resultJson4 = StringHandler.getRetString(result4);
+        JSONObject json4 = JSONObject.parseObject(resultJson4.toString());
+        int money = Integer.parseInt(json4.getJSONArray("rs").getJSONObject(0).getString("money"));
+        int balance =  Integer.parseInt(json4.getJSONArray("rs").getJSONObject(0).getString("balance"));
+
         if("1".equals(member_level)){
             String notes1 = "普通会员（"+userId+"）获得奖励：0.15元";
-            int sid1 = sendObjectCreate(947, id,userId, 1, 15, notes1, edit_time);
+            sendObjectCreate(947, id,userId, 1, 15, notes1, edit_time);
+            sendObjectCreate(957, money+15,balance+15,userId);
         }else if("2".equals(member_level)){
             String notes1 = "普通会员（"+userId+"）获得奖励：0.30元";
-            int sid1 = sendObjectCreate(947, id,userId, 1, 30, notes1, edit_time);
+            sendObjectCreate(947, id,userId, 1, 30, notes1, edit_time);
+            sendObjectCreate(957, money+30,balance+30,userId);
         }
     }
 
