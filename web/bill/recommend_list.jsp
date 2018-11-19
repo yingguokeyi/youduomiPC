@@ -29,7 +29,7 @@
                     ,{type:'checkbox', fixed: 'left'}
 //                    ,{field:'id', width:80, title: 'ID',  fixed: 'left',align:'center'}
                     ,{field:'user_id', width:100, title: '用户ID',fixed: 'left',align:'center'}
-                    ,{field:'nick_name', width:150, title: '会员昵称',align:'center' }
+                    ,{field:'wx_nick_name', width:150, title: '会员昵称',align:'center' }
                     ,{field:'edit_time', width:200, title: '时间',align:'center',sort: true,templet:function (d) {
                         var index="";
                         if(d.edit_time==""){

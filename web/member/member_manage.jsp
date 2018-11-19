@@ -27,7 +27,7 @@
                     {type:'checkbox', fixed: 'left'}
                     ,{field:'id', width:100, title: 'ID',  fixed: 'left'}
                     // ,{field:'account_number', width:121, title: '账号',templet: '#accountTpl',align:'center'}
-                    ,{field:'account_number', width:120, title: '会员昵称',templet:'#usernameTpl',align:'center' }
+                    ,{field:'wx_nick_name', width:120, title: '会员昵称',templet:'#usernameTpl',align:'center' }
                     ,{field:'phone', width:120, title: '手机号',templet:'#telPhoneTpl',align:'center'}
                     ,{field:'Invitation_code', width: 100, title: '邀请码',templet:'#Invitation_code',align:'center'}
                     ,{field:'member_level', width:120, title: '会员类型', templet:'#member_levelTpl',align:'center'}

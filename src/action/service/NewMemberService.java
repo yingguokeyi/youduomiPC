@@ -26,7 +26,7 @@ public class NewMemberService extends BaseService {
             sql.append(" and id =").append(id);
         }
         if (nick_name != null && !nick_name.equals("")) {
-            sql.append(" and nick_name like '%").append(nick_name).append("%'");
+            sql.append(" and wx_nick_name like '%").append(nick_name).append("%'");
         }
         if (phone != null && !phone.equals("")) {
             sql.append(" and phone like '%").append(phone).append("%'");
