@@ -25,9 +25,12 @@ public class PictureAction extends BaseServlet {
      *
      * @return
      */
-    public String getPictureCategoryInfo() {
-        String res = PictureService.getPictureCategoryInfo();
+    public String getPictureCategoryInfo(String pictureName, String status, String edit_time, String editend_time, String page, String limit) {
+        int pageI = (page == null ? 1 : Integer.valueOf(page));
+        int limitI = (limit == null ? 10 : Integer.valueOf(limit));
+        String res = PictureService.getPictureCategoryInfo(pictureName,status,edit_time,editend_time,(pageI - 1) * limitI, limitI);
         return StringHandler.getRetString(res);
+
     }
 
     /**
@@ -100,8 +103,8 @@ public class PictureAction extends BaseServlet {
         return StringHandler.getRetString(res);
     }
 
-    public String updatePictureStatus(String ids,String status){
-        String res = PictureService.updatePictureStatus(ids,status);
+    public String updatePictureStatus(String ids,String status,String code){
+        String res = PictureService.updatePictureStatus(ids,status,code);
         return StringHandler.getRetString(res);
     }
 
@@ -111,8 +114,8 @@ public class PictureAction extends BaseServlet {
      * @param status
      * @return
      */
-    public String deletePictureInfo(String ids,String status){
-        String res = PictureService.deletePictureInfo(ids, status);
+    public String deletePictureInfo(String ids,String status,String code){
+        String res = PictureService.deletePictureInfo(ids, status,code);
         return StringHandler.getRetString(res);
     }
 
@@ -157,5 +160,10 @@ public class PictureAction extends BaseServlet {
     public String isDulplicate(String categoryName){
         String res = PictureService.isDulplicate(categoryName);
         return StringHandler.getRetString(res);
+    }
+
+    public String saveTask(String jsonString,HttpServletRequest req){
+        String s = PictureService.addTask(jsonString, req);
+        return StringHandler.getRetString(s);
     }
 }

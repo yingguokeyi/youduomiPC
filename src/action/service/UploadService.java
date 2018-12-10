@@ -9,7 +9,7 @@ public class UploadService extends BaseService {
 	//添加图片
 	public static String addImg(String imageName, String imagePath,String imageThumbnailPath,String imageSamllPath,String imageMediumPath,String imageLargePath,HttpServletRequest req) {
 		int userId = StringHandler.getUserId(req);
-		int addSid = sendObjectCreate(482,imageName,imagePath,imageThumbnailPath,imageSamllPath,imageMediumPath,imageLargePath,userId,userId);
+		int addSid = sendObjectCreate(674,imageName,imagePath,imageThumbnailPath,imageSamllPath,imageMediumPath,imageLargePath,userId,userId);
 		String result = ResultPoor.getResult(addSid);
 		return result;
 	}

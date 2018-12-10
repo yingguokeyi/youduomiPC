@@ -90,6 +90,23 @@ public class MembersService extends BaseService {
         return result;
     }
 
+    public static String weixinMemberAdd(String openid,String subscribe,String wxNickName,String sex ,String province,String headImage,String memberLevel,String registrationTime ){
+        int memberLevelI = Integer.valueOf(memberLevel);
+        int subscribeI = Integer.valueOf(subscribe);
+        int sexI = Integer.valueOf(sex);
+        int sid = sendObjectCreate(662, openid,subscribeI, wxNickName, sexI, province, headImage,memberLevelI,registrationTime);
+
+        String result = ResultPoor.getResult(sid);
+        return result;
+    }
+
+    public static String findWxMember(String openid){
+        int sid = sendObject(663,openid);
+        String result = ResultPoor.getResult(sid);
+        String resultJson = StringHandler.getRetString(result);
+        return resultJson;
+    }
+
     //根据条件查询会员
     public static String getMemberListPage(String id,String nick_name,String phone,String status,String member_level,String registration_time1,String endDate ,String source,int page,int limit) throws Exception {
         StringBuffer sql = new StringBuffer();

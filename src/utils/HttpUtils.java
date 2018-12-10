@@ -95,9 +95,12 @@ public class HttpUtils {
             conn.setInstanceFollowRedirects(true);
             conn.setRequestMethod("POST"); // 设置请求方式
             conn.setRequestProperty("Content-Type", "application/json"); // 设置接收数据的格式
+            //conn.setRequestProperty("Charset", "UTF-8");
+            /*conn.setRequestProperty("Content-Type"," text/html; charset=UTF-8");*/
             // 获取URLConnection对象对应的输出流
             out = new PrintWriter(conn.getOutputStream());
             // 发送请求参数
+            //byte[] requestStringBytes = param.getBytes("UTF-8");
             out.print(param);
             // flush输出流的缓冲
             out.flush();

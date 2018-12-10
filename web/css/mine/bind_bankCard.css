@@ -1,0 +1,67 @@
+.main,.message,.message ul{
+	width: 100%;
+}
+.message ul li{
+	width: 100%;
+	padding: 0 .26rem;
+	border-top: .01rem solid #ebebeb;
+	overflow: hidden;
+	height: .9rem;
+	line-height: .9rem;
+	background: #fff;
+
+}
+.message ul li span:nth-child(1){
+	width: 80%;
+	font-size: .28rem;
+	color: #333;
+	float: left;
+	text-align: left;
+	height: 100%;
+}
+.message ul li label{
+	display: inline-block;
+	width: 30%;
+	vertical-align: top;
+}
+.fill{
+	width: 65%;
+	font-size: .26rem;
+	color: #666;
+	height: .85rem;
+	display: inline-block;
+	padding-left: .26rem;
+}	
+.message ul li span:nth-child(1) input,.message ul li span:nth-child(1) textarea{
+	border: none;
+	outline: none;
+}
+.message ul li span:nth-child(2){
+	width: 20%;
+	float: right;
+	text-align: right;
+}
+.message ul li span:nth-child(2) img{
+	width: .14rem;
+	height: .26rem;
+}
+.main_btn{
+	width: 100%;
+	text-align: center;
+	margin-top: .9rem;
+}
+.main_btn button{
+	width: 5.94rem;
+	height: .88rem;
+	text-align: center;
+	line-height: .88rem;
+	background: #b4b4b4;
+	color: #fff;
+	font-size: .3rem;
+	border-radius: .08rem;
+}
+.main_btn p{
+	color: #999;
+	font-size: .22rem;
+	margin-top: .24rem;
+}

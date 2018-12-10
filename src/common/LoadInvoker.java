@@ -32,8 +32,13 @@ public class LoadInvoker extends HttpServlet {
 		pcf.init();
 
 		// 初始化redis连接池token_user
-		RedisClient.initialShardedPool(PropertiesConf.REDIS_IP, PropertiesConf.REDIS_PORT, "user_token");
-		RedisClient.initialShardedPool(PropertiesConf.REDIS_IP, PropertiesConf.REDIS_PORT, "token_user");
+		/*RedisClient.initialShardedPool(PropertiesConf.REDIS_IP, PropertiesConf.REDIS_PORT, "user_token");
+		RedisClient.initialShardedPool(PropertiesConf.REDIS_IP, PropertiesConf.REDIS_PORT, "token_user");*/
+		RedisClient.initialPool(PropertiesConf.REDIS_IP, PropertiesConf.REDIS_PORT, "user_token",0);
+		RedisClient.initialPool(PropertiesConf.REDIS_IP, PropertiesConf.REDIS_PORT, "token_user",1);
+		RedisClient.initialPool(PropertiesConf.REDIS_IP, PropertiesConf.REDIS_PORT, "phone_verification_code",2);
+		RedisClient.initialPool(PropertiesConf.REDIS_IP, PropertiesConf.REDIS_PORT, "service_datacache",3);
+		RedisClient.initialPool(PropertiesConf.REDIS_IP, PropertiesConf.REDIS_PORT, "img_code",4);
 		
 		aioclient.AioTcpClient atc = new aioclient.AioTcpClient() {
 			@Override

@@ -1,6 +1,7 @@
 package action.service;
 
 import cache.ResultPoor;
+import com.alibaba.fastjson.JSONObject;
 import common.BaseCache;
 import common.PropertiesConf;
 import common.StringHandler;
@@ -18,8 +19,26 @@ public class PictureService extends BaseService{
      *
      * @return
      */
-    public static String getPictureCategoryInfo(){
-        int sid = sendObject(476);
+    public static String getPictureCategoryInfo(String pictureName, String status, String edit_time, String editend_time, int begin, int end){
+        StringBuffer sql = new StringBuffer();
+        //查询条件
+        if (pictureName != null && !pictureName.equals("")) {
+            sql.append(" AND p.category_name LIKE '%").append(pictureName).append("%'");
+        }
+        if (status != null && !status.equals("")) {
+            sql.append(" AND p.status = '").append(status).append("'");
+        }
+        if (edit_time != null && !"".equals(edit_time)) {
+            String created_date1 = Utils.transformToYYMMddHHmmss(edit_time);
+            sql.append(" and p.create_time between '").append(created_date1).append("'");
+        }
+        if (editend_time != null && !"".equals(editend_time)) {
+            String created_date1 = Utils.transformToYYMMddHHmmss(editend_time);
+            sql.append(" and '").append(created_date1).append("'");
+        }
+
+        sql.append(" order by create_time desc ");
+        int sid = sendObjectBase(670, sql.toString(),begin,end);
         String res = ResultPoor.getResult(sid);
         return res;
     }
@@ -124,13 +143,23 @@ public class PictureService extends BaseService{
      * @param status
      * @return
      */
-    public static String updatePictureStatus(String ids,String status){
-        String[] arr = ids.split(",");
-        int sid = 0;
-        for (String id : arr) {
-            sid = sendObjectCreate(484,status, id);
+    public static String updatePictureStatus(String ids,String status,String code){
+        String result = null;
+        if("0".equals(code)){
+            String[] arr = ids.split(",");
+            int sid = 0;
+            for (String id : arr) {
+                sid = sendObjectCreate(671, status, id);
+            }
+            result = ResultPoor.getResult(sid);
+        }else {
+            String[] arr = ids.split(",");
+            int sid = 0;
+            for (String id : arr) {
+                sid = sendObjectCreate(484, status, id);
+            }
+            result = ResultPoor.getResult(sid);
         }
-        String result = ResultPoor.getResult(sid);
         return result;
     }
 
@@ -140,13 +169,23 @@ public class PictureService extends BaseService{
      * @param status
      * @return
      */
-    public static String deletePictureInfo(String ids,String status){
-        String[] arr = ids.split(",");
-        int sid = 0;
-        for (String id : arr) {
-            sid = sendObjectCreate(485,status, id);
+    public static String deletePictureInfo(String ids,String status,String code){
+        String result = null;
+        if("0".equals(code)){
+            String[] arr = ids.split(",");
+            int sid = 0;
+            for (String id : arr) {
+                sid = sendObjectCreate(672,status, id);
+            }
+             result = ResultPoor.getResult(sid);
+        }else {
+            String[] arr = ids.split(",");
+            int sid = 0;
+            for (String id : arr) {
+                sid = sendObjectCreate(485, status, id);
+            }
+            result = ResultPoor.getResult(sid);
         }
-        String result = ResultPoor.getResult(sid);
         return result;
     }
 
@@ -190,6 +229,24 @@ public class PictureService extends BaseService{
     public static String isDulplicate(String categoryName){
         int sid = sendObject(490,categoryName);
         String res = ResultPoor.getResult(sid);
+        return res;
+    }
+
+    //添加任务
+    public static String addTask(String jsonString,HttpServletRequest req){
+        JSONObject jsonObject = JSONObject.parseObject(jsonString);
+        String detail_img_ids = (jsonObject.get("detailImgIds") == null ? "" : (jsonObject.get("detailImgIds").toString()));//详细商品图片
+        String category_name = jsonObject.get("task_name").toString();
+        String bonus = jsonObject.get("bonus_name").toString();
+        String task_url = jsonObject.get("task_url").toString();
+        String presell_begintime = jsonObject.get("presell_begintime").toString();
+        String presell_endtime = jsonObject.get("presell_endtime").toString();
+        String detail = jsonObject.get("detail").toString();
+        int userId = StringHandler.getUserId(req);
+        String currentTime = BaseCache.getTIME();
+        //category_name,link_adress,remark,bonus,uploader,update_time,create_time,`status`,is_default
+        int uid = sendObjectCreate(673,category_name,task_url,detail,bonus,String.valueOf(userId),currentTime,currentTime,0,0,presell_begintime,presell_endtime,detail_img_ids);
+        String res = ResultPoor.getResult(uid);
         return res;
     }
 }

@@ -1,5 +1,6 @@
 package action;
 
+import action.service.MembersService;
 import action.service.UserService;
 import com.alibaba.fastjson.JSONObject;
 import common.BaseCache;
@@ -124,4 +125,6 @@ public class UserAction extends BaseServlet {
 		String res =  UserService.verify(jsonString,request);
 		return res;
 	}
+
+
 }

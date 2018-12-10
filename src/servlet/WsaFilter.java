@@ -6,13 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 //import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 //import javax.servlet.http.HttpSession;
 
 @WebFilter(urlPatterns = "/*")
 public class WsaFilter implements Filter {
-
+	static List list = new ArrayList();
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
@@ -33,8 +35,8 @@ public class WsaFilter implements Filter {
 		String name = req.getServletPath();
 
 		System.out.println("I'm WsaFilter     path:"+ name);
-
-		if(name.equals("/login.jsp") || name.equals("/user")){
+		WsaFilter.getRequestUrl();
+		if(list.contains(name)){
 			arg2.doFilter(arg0, arg1);
 		}else if((session ==null || session.getAttribute("userId")==null) && (name.indexOf(".jsp")>0)){
 			System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+req.getServletPath());
@@ -58,6 +60,21 @@ public class WsaFilter implements Filter {
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
 		System.out.println("what?");
+	}
+
+	public static List getRequestUrl(){
+		list.add("/login.jsp");
+		list.add("/user");
+		list.add("/wechatService");
+		list.add("/wechat/register.jsp");
+		list.add("/wechat/member.jsp");
+		list.add("/wechat/reminder.jsp");
+		list.add("/menuMain");
+		list.add("/wechat/mine.jsp");
+		list.add("/wxUser");
+		list.add("/wechat/toUploadReceipts.jsp");
+		list.add("/wechat/receipt.jsp");
+	return list;
 	}
 
 }

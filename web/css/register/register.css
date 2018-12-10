@@ -1,0 +1,138 @@
+.main{
+	width: 100%;
+	height: auto;
+}
+.main_bak_login{
+	width: 100%;
+    height: auto;
+}
+/*title提示*/
+.title_p{
+	height: 0.2rem;
+	background-color: #F9F9F9;
+}
+/*手机号登录*/
+.main_infor{
+	width: 100%;
+	height: auto;
+	
+}
+.main_infor_name{
+	width: 6.94rem;
+	height: 0.96rem;
+	background-color: #FFFFFF;
+	border-bottom: 0.02rem solid #EBEBEB;
+	position: relative;
+	margin: 0 auto;
+    margin-bottom: 0.3rem;
+    border-radius: 0.1rem;
+}
+.name_li{
+	width: 35%;
+	height: 0.9rem;
+	line-height: 0.9rem;
+	float: left;
+	text-align: left;
+	font-size: 0.3rem;
+	color: #333333;
+}
+.name_li span{
+	font-size: .28rem;
+	color: #666;
+	vertical-align: top;
+}
+.name_li_phone{
+	width: 0.4rem;
+    height: 0.4rem;
+    margin: 0.2rem;
+}
+.name_li_yanzhengma{
+	width: 0.35rem;
+    height: 0.45rem;
+    margin: 0.2rem;
+}
+.name_input{
+	width: 60%;
+}
+.name_input input{
+	width: 100%;
+	height: 100%;
+	color: #999;
+	background: none;
+	border: none;
+	font-size: 0.26rem;
+}
+.name_input .img_yanzhengma {
+	position: absolute;
+	top: 0.12rem;
+	right: 0.2rem;
+	height: 0.7rem;
+	line-height: 0.7rem;
+	z-index: 50;
+	width: 1.8rem;
+	text-align: right;
+}
+.huoqu_yanzhengma{
+	color: #CCA96A;
+    position: absolute;
+    top: 0;
+    right: 0.24rem;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    z-index: 50;
+}
+.huoqu_yanzhengma img{
+	width: 0.4rem;
+    height: 0.3rem;
+    margin: 0.35rem 0.2rem 0 0;
+}
+.icon-yanjing-copy {  
+    display: none;
+}
+.name_input input.btn_yanzhengma{
+	color: #fff;
+    position: absolute;
+    top: .05rem;
+    right: 0.24rem;
+    height: 0.54rem;
+    line-height: 0.54rem;
+    z-index: 50;
+    width: 1.48rem;
+    text-align: center;
+    background: #333;
+    border-radius: .3rem;
+    font-size: .24rem;
+}
+/*登录按钮*/
+.main_btn{
+	width: 100%;
+	height: 0.88rem;
+	text-align: center;
+	margin-top: 0.5rem;
+}
+.main_btn_a{
+	display: inline-block;
+	width: 6rem;
+	height:0.88rem;
+	margin: 0 auto;
+}
+.mian_btn_login{
+	width: 100%;
+	height:auto;
+	line-height: 0.88rem;
+	background-color: #b4b4b4;
+	color: #FFFFFF;
+	font-size: 0.36rem;
+	border-radius: 0.5rem;
+}
+.register_cond{
+	width: 100%;
+	text-align: center;
+	font-size: .28rem;
+	margin-top: .28rem;
+	color: #333;
+}
+.register_cond img{
+	width: .2rem;
+	height: .2rem;
+}

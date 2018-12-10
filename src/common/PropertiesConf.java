@@ -25,6 +25,12 @@ public class PropertiesConf{
 //	public static String UPLOAD_PLAN_IMAGE_PATH;
 	public static String UPLOAD_MESSAGE_IMAGE_PATH;
 	public static String UPLOAD_POSTER_IMAGE_PATH;
+	public static String WEIXIN_MENU_URL;
+	public static String WEIXIN_MEMBER_INFOR_URL;
+	public static String YOUDUOMI_URL;
+	public static String WEIXIN_OAUTH2_URL;
+	public static String WEIXIN_CODE2ACCESSTOKEN_URL;
+	public static String WEIXIN_USERINFO_URL;
 
 
 	public void init(){
@@ -51,7 +57,12 @@ public class PropertiesConf{
 			IMG_URL_PREFIX_TEST = (String)prop.get("imgUrlPrefixTest");
 			UPLOAD_MESSAGE_IMAGE_PATH = (String) prop.get("uploadMessageImagePath");
 			UPLOAD_POSTER_IMAGE_PATH = (String) prop.get("uploadPosterImagePath");
-
+			WEIXIN_MENU_URL = (String) prop.get("weixinMenuUrl");
+			WEIXIN_MEMBER_INFOR_URL = (String) prop.get("WeiXinMemberInfoUrl");
+			YOUDUOMI_URL = (String)prop.get("youduomiURL");
+			WEIXIN_OAUTH2_URL = (String)prop.get("weixinOauth2Url");
+			WEIXIN_CODE2ACCESSTOKEN_URL = (String)prop.get("weixinCode2accessTokenUrl");
+			WEIXIN_USERINFO_URL = (String)prop.get("weixinUserinfoUrl");
 //			UPLOAD_PLAN_IMAGE_PATH = (String)prop.get("uploadPlanImagePath");
 
 		} catch (IOException e) {

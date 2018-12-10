@@ -51,7 +51,7 @@ public class UploadAction extends BaseServlet {
 		if(uploadType.equals("loadShowImg")){
 			address = PropertiesConf.UPLOAD_GOODS_IMAGE_PATH + pathTemp + "show/";
 		}else if(uploadType.equals("loadDetailImg")){
-			address = PropertiesConf.UPLOAD_GOODS_IMAGE_PATH + pathTemp +"detail/";
+			address = PropertiesConf.UPLOAD_GOODS_IMAGE_PATH;
 		} else if (uploadType.equals("loadRecommonImg")) {
 			address = PropertiesConf.UPLOAD_GOODS_IMAGE_PATH + pathTemp + "recommon/";
 			// 这里存放商品推荐栏目图片
@@ -81,7 +81,7 @@ public class UploadAction extends BaseServlet {
 			}else if (uploadType.equals("loadPosterImg")){
 				imgPath = "/poster/" + pathTemp + fileName;
 			}else {
-				imgPath = "/goods/" + pathTemp + "detail/" + fileName;
+				imgPath = "/detail/" + fileName;
 			}
 		}else{
 			System.out.println("商品上传有问题");
