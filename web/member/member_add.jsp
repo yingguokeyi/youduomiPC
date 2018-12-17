@@ -32,8 +32,10 @@
                var phone =$('#phone').val();
                var real_name =$('#real_name').val();
                var member_level =$('#member_level').val();
-               var vip_start_time =$('#vip_start_time').val();
-               var vip_end_time = $('#vip_end_time').val();
+//               var vip_start_time =$('#vip_start_time').val();
+//               var vip_end_time = $('#vip_end_time').val();
+               var vip_start_time ='';
+               var vip_end_time ='';
                var post =$('#post').val();
                if(nick_name ==""){
                    layer.msg("账号不能为空！");
@@ -155,25 +157,25 @@
                         <select name="member_level" id="member_level"  lay-verify="required" lay-search="">
                             <option value=""></option>
                             <option value="1">普通会员</option>
-                            <option value="2">VIP会员</option>
+                            <%--<option value="2">VIP会员</option>--%>
                         </select>
                     </div>
                 </div>
             </div>
-            <div class="layui-form-item">
-                <div class="layui-inline">
-                    <label class="layui-form-label">VIP开启时间</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="vip_start_time" id="vip_start_time" lay-verify="date" placeholder="年/月/日" autocomplete="off" class="layui-input" style="width:190px;">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label">VIP结束时间</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="vip_end_time" id="vip_end_time" lay-verify="date" placeholder="年/月/日" autocomplete="off" class="layui-input" style="width:190px;">
-                    </div>
-                </div>
-            </div>
+            <%--<div class="layui-form-item">--%>
+                <%--<div class="layui-inline">--%>
+                    <%--<label class="layui-form-label">VIP开启时间</label>--%>
+                    <%--<div class="layui-input-block">--%>
+                        <%--<input type="text" name="vip_start_time" id="vip_start_time" lay-verify="date" placeholder="年/月/日" autocomplete="off" class="layui-input" style="width:190px;">--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="layui-inline">--%>
+                    <%--<label class="layui-form-label">VIP结束时间</label>--%>
+                    <%--<div class="layui-input-block">--%>
+                        <%--<input type="text" name="vip_end_time" id="vip_end_time" lay-verify="date" placeholder="年/月/日" autocomplete="off" class="layui-input" style="width:190px;">--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
             <div class="" style=""><span style="margin-left:30px;">账号信息</span></div>
             <div class="layui-form-item">
                 <div class="layui-inline">

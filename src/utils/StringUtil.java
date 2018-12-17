@@ -68,6 +68,24 @@ public class StringUtil extends StringUtils {
 		return prestrs;
 	}
 
+	public static String createLinkString(Map<String, Object> params) {
+
+		List<String> keys = new ArrayList<String>(params.keySet());
+		Collections.sort(keys);
+		String prestr = "";
+		for (int i = 0; i < keys.size(); i++) {
+			String key = keys.get(i);
+			String value = (String) params.get(key);
+			// 拼接时，不包括最后一个&字符
+			if (i == keys.size() - 1) {
+				prestr = prestr + key + "=" + value;
+			} else {
+				prestr = prestr + key + "=" + value + "&";
+			}
+		}
+		return prestr;
+	}
+
 	public static String getStringFromMap(Map<String, Object> map, String key, String defaultValue) {
 		if (key == "" || key == null) {
 			return defaultValue;

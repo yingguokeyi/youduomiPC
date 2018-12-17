@@ -28,9 +28,10 @@ public class MemberLevelTimeListener extends BaseService implements ServletConte
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         System.out.println(" -------------   pddTimeListener   ---------------start tme  form  " + LocalDateTime.now());
         executeMemberLevel();
+        executeTaskStatus();
     }
 
-
+    //会员等级定时任务
     public static void executeMemberLevel() {
         ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(
                 1,
@@ -40,6 +41,22 @@ public class MemberLevelTimeListener extends BaseService implements ServletConte
         System.out.println(" -------------   会员等级定时任务   ---------------" + LocalDateTime.now());
         executorService.scheduleAtFixedRate(
                 new MemberLevelManager(),
+                1000 * 60 * 5,
+                1000 * 60 * 5,
+                TimeUnit.MILLISECONDS);
+
+    }
+
+    //任务状态定时任务
+    public static void executeTaskStatus() {
+        ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(
+                1,
+                new BasicThreadFactory.Builder().namingPattern("taskStatus-ScheduleReverse-pool-%d").daemon(true).build()
+        );
+
+        System.out.println(" -------------   任务状态定时任务   ---------------" + LocalDateTime.now());
+        executorService.scheduleAtFixedRate(
+                new TaskStatusManager(),
                 1000 * 60 * 5,
                 1000 * 60 * 5,
                 TimeUnit.MILLISECONDS);

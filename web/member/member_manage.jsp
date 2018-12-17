@@ -657,7 +657,7 @@
             <button class="layui-btn layui-btn-sm" onclick="m_edit()"><i class="layui-icon">&#xe642;</i>编辑</button>
             <button class="layui-btn layui-btn-sm" onclick="m_del()"><i class="layui-icon">&#xe640;</i>删除</button>
             <button class="layui-btn layui-btn-sm" onclick="m_add()"><i class="layui-icon">&#xe61f;</i>添加</button>
-            <button class="layui-btn layui-btn-sm" onclick="upgrade()"><i class="layui-icon"></i>会员升级</button>
+            <%--<button class="layui-btn layui-btn-sm" onclick="upgrade()"><i class="layui-icon"></i>会员升级</button>--%>
         </div>
         <!-- 表格显示-->
         <table class="layui-hide" id="test" lay-filter="useruv"></table>
