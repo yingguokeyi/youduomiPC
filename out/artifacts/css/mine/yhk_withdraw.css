@@ -1,0 +1,94 @@
+.wx_y{
+	width: 100%;
+	text-align: center;
+	padding: 1rem 0 .96rem;
+}
+.y_txt{
+	font-size: .3rem;
+	color: #333;
+}
+.y_txt span{
+	font-size: .48rem;
+	color: #fd4848;
+	margin-left: .14rem;
+}
+.wifg{
+	width: 100%;
+	height: .2rem;
+	background: #f4f5f9;
+}
+.main_bot{
+	width: 100%;
+	padding: 0 .26rem;
+}
+.wx_name{
+	width: 100%;
+	height: .9rem;
+	font-size: .28rem;
+	color: #333;
+	line-height: .9rem;
+	border-bottom: .01rem solid #ebebeb;
+	overflow: hidden;
+}
+.card_name{
+	float: left;
+}
+.card_choose{
+	float: right;
+}
+.card_choose img{
+	width: .14rem;
+	height: .26rem;
+	vertical-align: middle;
+}
+.wx_sum{
+	width: 100%;
+	margin-top: .66rem;
+}
+.wx_sum p{
+	width: 78%;
+	height: .88rem;
+	display: inline-block;
+}
+.wx_sum input{
+	width: 101.5%;
+	height: 100%;
+	border:none;
+	outline: none;
+	background: #f4f5f9;
+	padding-left: .24rem;
+	line-height: .88rem;
+	border-top-left-radius: .08rem;
+	border-bottom-left-radius: .08rem;
+}
+.wx_sum button{
+	width: 20%;
+	height: .88rem;
+	background: #333;
+	line-height: .88rem;
+	text-align: center;
+	border-top-right-radius: .08rem;
+	border-bottom-right-radius: .08rem;
+	color: #fff;
+}
+.wit_condition{
+	font-size: .22rem;
+	color: #999;
+	margin-top: .24rem;
+}
+.wit_service{
+	width: 100%;
+	text-align: center;
+	margin-top: 1.2rem;
+}
+.wit_service img{
+	width: .34rem;
+	height: .34rem;
+	vertical-align: middle;
+}
+.wit_service a{
+	color: #666;
+	font-size: .24rem;
+	border-bottom: .02rem solid #666;
+	margin-left: .14rem;
+}

@@ -1,0 +1,98 @@
+.main{
+	width: 100%;
+}
+.wfg{
+	width: 100%;
+	height: .1rem;
+	background: #f4f5f9;
+}
+.main_top{
+	width: 100%;
+}
+.main_top ul{
+	width: 100%;
+	height: auto;
+}
+.main_top li{
+	width: 100%;
+	height: 1.1rem;
+	line-height: 1.1rem;
+	border-bottom: 1px solid #ebebeb;
+}
+a.first_a{
+	display: inline-block;
+	width: 100%;
+	height: 1.1rem;
+	line-height: 1.1rem;
+	color: #323232;
+	font-size: 0.28rem;
+}
+.first_a span.title_content{
+	float: left;
+	margin-left: 0.3rem;
+}
+.first_a span.title_content img{
+	width: .6rem;
+	height: .6rem;
+	vertical-align:middle;
+	border-radius: 50%;
+}
+.first_a span.title_content span{
+	margin-left: .2rem;
+}
+.first_a span.back_span{
+	height: 1.1rem;
+    float: right;
+    line-height: 1.1rem;
+	margin-right: 0.24rem;
+}
+.back_span button{
+	width: .9rem;
+	height: .44rem;
+	background: #333;
+	color: #fff;
+	font-size:.24rem;
+	text-align: center;
+	line-height: .44rem;
+	border-radius: .3rem;
+}
+.wifg{
+	width: 100%;
+	height: .2rem;
+	background: #f4f5f9;
+}
+.main_bot{
+	width: 100%;
+	height: auto;
+}
+.with_title{
+	width: 100%;
+	padding: .4rem 0 .32rem .26rem;
+	font-size: .26rem;
+	color: #333;
+}
+.main_bot ul{
+	width: 100%;
+	padding: 0 1rem 1.18rem .24rem;
+	color: #666;
+	font-size: .24rem;
+}
+.main_bot ul li{
+	width: 100%;
+	margin-bottom: .24rem;
+}
+.wit_service{
+	width: 100%;
+	text-align: center;
+}
+.wit_service img{
+	width: .34rem;
+	height: .34rem;
+	vertical-align: middle;
+}
+.wit_service a{
+	color: #666;
+	font-size: .24rem;
+	border-bottom: .02rem solid #666;
+	margin-left: .14rem;
+}

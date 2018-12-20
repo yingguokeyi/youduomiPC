@@ -239,8 +239,8 @@ public class PictureService extends BaseService{
         String category_name = jsonObject.get("task_name").toString();
         String bonus = jsonObject.get("bonus_name").toString();
         String task_url = jsonObject.get("task_url").toString();
-        String presell_begintime = jsonObject.get("presell_begintime").toString();
-        String presell_endtime = jsonObject.get("presell_endtime").toString();
+        String presell_begintime = Utils.transformToYYMMddHHmmss(jsonObject.get("presell_begintime").toString());
+        String presell_endtime = Utils.transformToYYMMddHHmmss(jsonObject.get("presell_endtime").toString());
         String detail = jsonObject.get("detail").toString();
         int userId = StringHandler.getUserId(req);
         String currentTime = BaseCache.getTIME();

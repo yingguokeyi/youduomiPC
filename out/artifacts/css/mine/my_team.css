@@ -1,0 +1,89 @@
+.main_bot{
+	width:100%;
+	background: #fff;
+	padding-top: .1rem;
+}
+.team_tile{
+	width: 100%;
+	padding-bottom: .2rem;
+	border-bottom: .01rem solid #ebebeb;
+}
+.main_bot .bot_ul{
+	width: 94%;
+	height: .6rem;
+	border: .01rem solid #07a0f8;
+	border-radius: .08rem;
+	overflow: hidden;
+	margin-left: 3%;
+}
+.bot_ul li{
+	width: 33.33%;
+	height: 100%;
+	text-align: center;
+	line-height: .6rem;
+	color: #07a0f8;
+	font-size: .26rem;
+	float: left;
+}
+.bot_ul li a{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+a.tabhover{
+	background: #07a0f8;
+	color: #fff;
+}
+.bot_ul li+li{
+	border-left: .01rem solid #07a0f8;
+}
+.tabcontent{
+	width: 100%;
+	height: auto;
+}
+.tabcontent ul{
+	width: 100%;
+	height: auto;
+}
+.tabcontent li{
+	width: 100%;
+	height: 1.12rem;
+	line-height: 1.12rem;
+	border-bottom: 1px solid #ebebeb;
+}
+a.first_a{
+	display: inline-block;
+	width: 100%;
+	height: 1.12rem;
+	line-height: 1.12rem;
+	color: #323232;
+	font-size: 0.28rem;
+}
+.first_a span.title_content{
+	float: left;
+	margin-left: 0.3rem;
+}
+.first_a span.title_content img{
+	width: .62rem;
+	height: .62rem;
+	vertical-align:middle;
+	border-radius: 50%;
+}
+.first_a span.title_content span{
+	margin-left: .3rem;
+}
+.first_a span.back_span{
+	height: 1.12rem;
+    float: right;
+    line-height: 1.12rem;
+	margin-right: 0.24rem;
+}
+.back_span span{
+	font-size:.24rem;
+	color:#999;
+	margin-right: .1rem;
+}
+.back_span img{
+	width: 0.14rem;
+	height: 0.26rem;
+}

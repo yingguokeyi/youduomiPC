@@ -1,0 +1,174 @@
+
+/* 头部信息 */
+.main{
+    width: 100%;
+    height: 100%;
+}
+.ticket_information{
+    width: 100%;
+    height: 1.52rem;
+    line-height: 1.52rem;
+    text-align: center;
+    color: #666666;
+    font-size: 0.26rem;
+    background: #ffffff;
+
+}
+/* 分割线 */
+.kong{
+    width: 100%;
+    height: 0.2rem;
+    background: #f4f5f9;
+}
+/* 小票详细信息 */
+.details{
+    width: 100%;
+    height: 100%;
+}
+.details_list{
+    width: 100%;
+    height: 0.83rem;
+    background: #ffffff;
+    overflow: hidden;
+}
+.details_list .details_first{
+    width: 0.67rem;
+    height: 0.83rem;
+    line-height: 0.83rem;
+    text-align: center;
+    color: #333333;
+    font-size: 0.26rem;
+    float: left;
+    margin-left: 1.56rem;
+
+}
+.details_list .details_second{
+    width: 0.67rem;
+    height: 0.83rem;
+    line-height: 0.83rem;
+    text-align: center;
+    color: #333333;
+    font-size: 0.26rem;
+    float: left;
+    margin-left: 1.78rem;
+
+}
+.details_list .details_thirdly{
+    width: 0.67rem;
+    height: 0.83rem;
+    line-height: 0.83rem;
+    text-align: center;
+    color: #333333;
+    font-size: 0.26rem;
+    float: left;
+    margin-left: 0.34rem;
+
+}
+.details_list .details_fourthly{
+    width: 0.98rem;
+    height: 0.83rem;
+    line-height: 0.83rem;
+    text-align: center;
+    color: #333333;
+    font-size: 0.26rem;
+    float: right;
+    margin-right: 0.26rem;
+
+}
+/* 账单 */
+.bill{
+    width: 100%;
+    height: auto;
+    background: #ffffff;
+}
+.bill_li{
+    width: 100%;
+    border-top: .01rem solid #ebebeb;
+    overflow: hidden;
+    /* padding: .0rem .26rem; */
+    padding-bottom: 0.3rem;
+}
+.bill_list{
+    width: 100%;
+    overflow: hidden;
+    margin-top: 0.3rem;
+}
+.record_infor {
+    width: 100%;
+    margin-top: 0.3rem;
+}
+.infor_title {
+    width: 100%;
+    font-size: .26rem;
+}
+.infor_title span {
+    color: #333;
+    margin-left: 0.26rem;
+}
+.record_plan{
+    width: 100%;
+    font-size: .24rem;
+    margin-top: .26rem;
+    overflow: hidden ;
+}
+.record_plan span{
+    color: #999;
+}
+.record_plan span:nth-child(1){
+    float: left;
+    margin-left: 0.7rem;
+}
+.record_plan span:nth-child(2){
+    float: left;
+    margin-left: 1.65rem;
+}
+.record_plan span:nth-child(3){
+    float: left;
+    margin-left: 0.6rem;
+}
+.record_plan span:nth-child(4){
+    float: right;
+    margin-right: 0.26rem;
+}
+/* 图片 */
+img{
+    width: 100%;
+    height: 100%;
+}
+.bill_img{
+    width: 6.99rem;
+    height: 0.05rem;
+
+}
+.img_li{
+    width: 6.99rem;
+    height: 0.05rem;
+    margin-left: 0.26rem;
+}
+
+.infor_titlee {
+    width: 100%;
+    font-size: .26rem;
+}
+.infor_titlee span{
+    color: #333;
+    margin-left: 0.26rem;
+}
+.record_plann{
+    width: 100%;
+    margin-top: 0.3rem;
+    overflow: hidden;
+}
+.record_plann .way{
+    color: #333;
+    font-size: 0.26rem;
+    float: left;
+    margin-left: 0.26rem;
+   
+}
+.record_time{
+    color: #999;
+    font-size: .24rem;
+    float: right;
+    margin-right:0.26rem;
+}

@@ -1,0 +1,155 @@
+
+.main_bot{
+	width: 100%;
+	padding: 0 .26rem;
+}
+.wx_name{
+	width: 100%;
+	height: .9rem;
+	font-size: .28rem;
+	color: #333;
+	line-height: .9rem;
+	border-bottom: .01rem solid #ebebeb;
+}
+.wx_sum{
+	width: 100%;
+	margin-top: .66rem;
+}
+.wx_sum p{
+	width: 78%;
+	height: .88rem;
+	display: inline-block;
+}
+.wx_sum input{
+	width: 101.5%;
+	height: 100%;
+	border:none;
+	outline: none;
+	background: #f4f5f9;
+	padding-left: .24rem;
+	line-height: .88rem;
+	border-top-left-radius: .08rem;
+	border-bottom-left-radius: .08rem;
+}
+.wx_sum button{
+	width: 20%;
+	height: .88rem;
+	background: #333;
+	line-height: .88rem;
+	text-align: center;
+	border-top-right-radius: .08rem;
+	border-bottom-right-radius: .08rem;
+	color: #fff;
+}
+.wit_condition{
+	font-size: .24rem;
+	color: #999;
+    margin-top: .9rem;
+    margin-left: 2.33rem;
+}
+.wit_service{
+	font-size: .24rem;
+	color: #999;
+    margin-left: 1.76rem;
+}
+
+/* 查询历史 */
+img{
+    width: 100%;
+    height: 100%;
+}
+.discountgoods_title {
+    width: 100%;
+    height: auto;
+    border-bottom: 0.01rem solid #ebebeb;
+    margin-top: 0.65rem;
+}
+.kong{
+    width: 100%;
+    height: 0.2rem;
+    background: #f4f5f9;
+}
+.discountgoods_title ul {
+    width: 100%;
+    height: 0.80rem;
+    background-color: #FFFFFF;
+}
+.discountgoods_title li {
+    width: 33.3%;
+    height: 0.80rem;
+    line-height: 0.80rem;
+    float: left;
+    background-color: #FFFFFF;
+    text-align: center;
+    position: relative;
+}
+.synthesize_img{
+    width: 0.24rem;
+    height: 0.26rem;
+}
+.sales{
+    font-size: 0.26rem;
+    color: #333333;
+}
+.price a{
+    font-size: 0.22rem;
+    color: #666666;
+}
+.p_ret{
+    display: inline-block;
+    position: absolute;
+    width: 0.78rem;
+    height: 0.38rem;
+    border: 0.02rem solid #666666;
+    border-radius:38.4%;
+    left: 0.85rem;
+    top: 0.2rem;
+}
+
+/* 查询列表 */
+.main,.withdrawal_record{
+	width: 100%;
+	background: #fff;
+}
+.withdrawal_record ul{
+	width: 100%;
+	height: auto;
+}
+.withdrawal_record ul li{
+	width: 100%;
+	border-top: .01rem solid #ebebeb;
+	overflow: hidden;
+	padding: .3rem .26rem;
+}
+.record_infor{
+	width: 80%;
+	float: left;
+}
+.infor_title{
+	width: 100%;
+	font-size: .26rem;
+}
+.infor_title span:nth-child(1){
+	color: #333;
+}
+.record_t i:nth-child(1){
+	color: #fd4848;
+}
+.record_t{
+	margin-left: .4rem;
+}
+.record_time,.record_plan{
+	margin-top: .26rem;
+	color: #999;
+	font-size: .24rem;
+}
+.record_img{
+	width: 20%;
+	float: right;
+	text-align: right;
+}
+.record_img img{
+	width: .14rem;
+	height: .26rem;
+	margin-top: .6rem;
+}

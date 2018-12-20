@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="youduomiPC:war">
+    <output-path>$PROJECT_DIR$/../out/artifacts/youduomiPC_war</output-path>
+    <root id="archive" name="youduomiPC_war.war">
+      <element id="artifact" artifact-name="youduomiPC:war exploded" />
+      <element id="dir-copy" path="$PROJECT_DIR$/web" />
+    </root>
+  </artifact>
+</component>
