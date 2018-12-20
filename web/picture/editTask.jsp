@@ -200,6 +200,14 @@
                                 imgList += '<li style="float: left;margin-left: 10px;width: 180px;height: 180px;"><img style="width:100%;height:100%;" src='+imgUrlPrefix+imgs[i]+' /></li>';
                             }
                             $('#source ul').html(imgList);
+
+                            var imgs2 = data.img2;
+                            var imgList2='';
+                            for(var i=0;i<imgs2.length;i++){
+                                imgList2 += '<li style="float: left;margin-left: 10px;width: 180px;height: 180px;"><img style="width:100%;height:100%;" src='+imgUrlPrefix+imgs2[i]+' /></li>';
+                            }
+                            $('#source2 ul').html(imgList2);
+
                         } else {
                             layer.msg("异常");
                         }
@@ -733,6 +741,22 @@
                 <input type="hidden" id="goods_url_hidden" name="goods_url_hidden" lay-verify="required" type="text">
                 <%--<label style="width: 100px; color: red" class="layui-icon" id="add_goods_url">&#xe654;</label>--%>
             </div>
+        </div>
+
+        <label class="layui-form-label"><label style="color: red">*</label>添加核对图片：</label>
+        <div class="layui-upload" style="margin-left: 110px;">
+            <button type="button" class="layui-btn" id="detailUpload2">
+                上传核对图片
+            </button>
+            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;" id="source2">
+                预览图：
+                <%--<input type="hidden" id="detailImgIds" name="detailImgIds" value="" lay-verify="required"--%>
+                <%--autocomplete="off">--%>
+                <%--<div class="layui-list" id="detailUploadDiv"></div>--%>
+                <ul style="overflow: hidden">
+
+                </ul>
+            </blockquote>
         </div>
             <div class="layui-form-item">
                 <div class="layui-inline">

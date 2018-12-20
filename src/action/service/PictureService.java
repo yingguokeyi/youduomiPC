@@ -1,5 +1,6 @@
 package action.service;
 
+import action.sqlhelper.taskSql;
 import cache.ResultPoor;
 import com.alibaba.fastjson.JSONObject;
 import common.BaseCache;
@@ -236,6 +237,7 @@ public class PictureService extends BaseService{
     public static String addTask(String jsonString,HttpServletRequest req){
         JSONObject jsonObject = JSONObject.parseObject(jsonString);
         String detail_img_ids = (jsonObject.get("detailImgIds") == null ? "" : (jsonObject.get("detailImgIds").toString()));//详细商品图片
+        String contrastImgIds = (jsonObject.get("detailImgIds2") == null ? "" : (jsonObject.get("detailImgIds2").toString()));//校验图片
         String category_name = jsonObject.get("task_name").toString();
         String bonus = jsonObject.get("bonus_name").toString();
         String task_url = jsonObject.get("task_url").toString();
@@ -245,8 +247,48 @@ public class PictureService extends BaseService{
         int userId = StringHandler.getUserId(req);
         String currentTime = BaseCache.getTIME();
         //category_name,link_adress,remark,bonus,uploader,update_time,create_time,`status`,is_default
-        int uid = sendObjectCreate(673,category_name,task_url,detail,bonus,String.valueOf(userId),currentTime,currentTime,0,0,presell_begintime,presell_endtime,detail_img_ids);
+        int uid = sendObjectCreate(673,category_name,task_url,detail,bonus,String.valueOf(userId),currentTime,currentTime,0,0,presell_begintime,presell_endtime,detail_img_ids,contrastImgIds);
         String res = ResultPoor.getResult(uid);
         return res;
+    }
+
+    public static String getUserTaskList(){
+        StringBuffer sql = new StringBuffer();
+        sql.append("SELECT p.id, t.id AS task_id, p.category_name,p.bonus,t.submit_date,t.`status`,t.remarks,t.taskImgIds,u.wx_nick_name FROM youduomi.b_task_list AS t LEFT JOIN youduomi.b_picture_category AS p ON t.task_id = p.id LEFT JOIN youduomi.t_user AS u ON t.user_id = u.id WHERE t.`status` IN (3, 4, 5) ");
+        int sid = BaseService.sendObjectBase(9999,sql.toString());
+        return ResultPoor.getResult(sid);
+    }
+
+    public static String getImgById(String id){
+//        int sid = 0;
+//        String[] arr = taskImgIds.split(",");
+//        System.out.println(arr);
+//        for (String id : arr) {
+//            sid = sendObject(984, PropertiesConf.DETAIL_IMG_URL,id);
+//        }
+        int sid = sendObject(984, PropertiesConf.DETAIL_IMG_URL,id);
+        String res = ResultPoor.getResult(sid);
+        return res;
+    }
+
+    public static String examineTaskList(int page,int limit,String wx_nick_name,String status,String start_time,String end_time){
+        StringBuffer sql = new StringBuffer();
+        sql.append(taskSql.getExamineTaskListPage_sql);
+        if (wx_nick_name!=null && !"".equals(wx_nick_name) ){
+            sql.append(" and u.wx_nick_name =").append(wx_nick_name);
+        }
+        if (status!=null && !"".equals(status) ){
+            sql.append(" and t.status =").append(status);
+        }
+        if ((start_time != null && !"".equals(start_time)) || (end_time!=null && !"".equals(end_time))) {
+            String bDate = Utils.transformToYYMMddHHmmss(start_time);
+            String eDate = Utils.transformToYYMMddHHmmss(end_time);
+            System.out.println(bDate);
+            sql.append(" and t.submit_date BETWEEN ").append(bDate).append(" and ").append(eDate);
+        }
+        int sid = BaseService.sendObjectBase(9997,sql.toString(),page,limit);
+        String result = ResultPoor.getResult(sid);
+        String resultJson = StringHandler.getRetString(result);
+        return resultJson;
     }
 }

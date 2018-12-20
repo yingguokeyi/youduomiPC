@@ -170,6 +170,7 @@ public class TaskService extends BaseService {
     public static String findTaskInfo(String id){
         JSONObject json = new JSONObject();
         List<String> list = new ArrayList<>();
+        List<String> list2 = new ArrayList<>();
         int sid = sendObject(677,id);
         String result = ResultPoor.getResult(sid);
         String resultJson = StringHandler.getRetString(result);
@@ -186,8 +187,21 @@ public class TaskService extends BaseService {
                 list.add(imgIds);
             }
         }
+        String[] imgId2 = json1.getJSONArray("rs").getJSONObject(0).getString("contrastImgIds").split(",");
+        int length2 = imgId2.length;
+        if(!imgId2[0].equals("")&&imgId2.length !=0) {
+            for (int i = 0; i < imgId2.length; i++) {
+                int sids2 = sendObject(678, imgId2[i]);
+                String results2 = ResultPoor.getResult(sids2);
+                String resultJsons2 = StringHandler.getRetString(results2);
+                JSONObject jsons2 = JSONObject.parseObject(resultJsons2.toString());
+                String imgIds2 = jsons2.getJSONArray("rs").getJSONObject(0).getString("image_path");
+                list2.add(imgIds2);
+            }
+        }
         json.put("success",true);
         json.put("img",list);
+        json.put("img2",list2);
         return json.toString();
     }
 }
