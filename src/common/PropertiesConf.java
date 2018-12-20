@@ -15,6 +15,7 @@ public class PropertiesConf{
 	public static Integer REDIS_PORT;
 
 	public static String HESTIA;
+	public static String DETAIL_IMG_URL;
 	public static String IMG_URL_PREFIX;
 	public static String UPLOAD_LOGO_IMAGE_PATH;
 	public static String UPLOAD_CATEGORY_IMAGE_PATH;
@@ -48,6 +49,7 @@ public class PropertiesConf{
 			REDIS_PORT = Integer.valueOf(redisPath.split(":")[1]);
 
 			HESTIA = (String) prop.get("hestia");
+			DETAIL_IMG_URL = (String) prop.get("detailImgUrl");
 			IMG_URL_PREFIX =  (String) prop.get("imgUrlPrefix");
 			UPLOAD_LOGO_IMAGE_PATH = (String)prop.get("uploadLogoImagePath");
 			UPLOAD_CATEGORY_IMAGE_PATH= (String)prop.get("uploadCategoryImagePath");

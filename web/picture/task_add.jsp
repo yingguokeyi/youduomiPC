@@ -113,7 +113,9 @@
     var showImgIds = "";
     var showImgCount = 0;
     var detailImgIds = "";
+    var detailImgIds2 = "";
     var detailImgCount = 0;
+    var detailImgCount2 = 0;
     var goodsSourceMap = new Map();
     var brandMap = new Map();
     layui.use(['upload', 'element', 'form'], function () {
@@ -124,6 +126,7 @@
 
         var arry = new Array();
         var arry1 = new Array();
+        var arry2 = new Array();
         //普通图片上传 show
         var uploadShowInst = upload.render({
             elem: '#showUpload',
@@ -235,6 +238,69 @@
                     $('#divDetailImg' + detailImgCount).append('<p style="width:20px;position: absolute;top: 0;z-index: 1000;right: 0;" onclick="detailImgClick(' + detailImgCount + "," + imgId + ')" id="detailImgP' + detailImgCount + 'id' + imgId + '"><img src="${ctx}/image/delete.png" /></p>');
 
                     //var p = "detailImgP"+detailImgCount;
+
+                } else {
+                    //如果上传失败
+                    layer.msg("异常");
+                }
+            }
+            ,
+            error: function () {
+                //演示失败状态，并实现重传
+                // var p = "detailImgP"+detailImgCount;
+                // var detailImgPText = $("'#"+p+"'");
+                // detailImgPText.html('<span style="color: #FF5722;">上传失败</span><a class="layui-btn layui-btn-mini detailImg-reload">重试</a>');
+                // detailImgPText.find('.detailImg-reload').on('click', function(){
+                //     uploadDetailInst.upload();
+                // });
+
+                layer.msg('上传失败!');
+                isSuccess_Upload = 0;
+            }
+        });
+
+        //普通图片上传2 detail
+        var uploadDetailInst2 = upload.render({
+            elem: '#detailUpload2'
+            ,
+            url: '${ctx}/upload?method=uploadGoodsImg&uploadType=loadDetailImg&minCateCode=0&goodsTypeCode=0'
+            ,
+            before: function (obj) {
+                obj.preview(function (index, file, result) {
+                    //$('#showUploadDiv').empty();
+                    detailImgCount2++;
+                    for (var i = 0; i < arry2.length; i++) {
+                        if (arry2[i].indexOf(file.name) > -1) {
+                            layer.msg('不能重复添加同一张图片！');
+                            return;
+                        }
+                    }
+                    arry2.push(file.name);
+                    if (detailImgCount2 > 15) {
+                        layer.msg('添加的图片不能大于15张！');
+                        return;
+                    }
+                    var ss = "#detailImg2" + detailImgCount2;
+                    $('#detailUploadDiv2').append('<div id="divDetailImg2' + detailImgCount2 + '" style="width: 180px;height: 180px;float: left;margin-left: 10px;position: relative"><img src="' + result + '" alt="' + file.name +
+                        '" class="layui-upload-img" id="detailImg2' + detailImgCount2 +
+                        '" name="detailImg2' + detailImgCount2 + '" style="width:100%;height: 100%;">');
+                });
+            }
+            ,
+            done: function (res) {
+                //上传完毕
+                if (res.success) {
+                    //上传成功
+                    //layer.msg('上传成功');
+                    var imgId2 = res.result.ids[0];
+                    var idsTemp = $('#detailImgIds2').val();
+                    detailImgIds2 = detailImgIds2 + imgId2 + ",";
+
+                    if (detailImgIds2 != "") {
+                        $('#detailImgIds2').val(detailImgIds2.substring(0, detailImgIds2.length - 1));
+                    }
+                    $('#divDetailImg2' + detailImgCount2).append('<p style="width:20px;position: absolute;top: 0;z-index: 1000;right: 0;" onclick="detailImgClick2(' + detailImgCount2 + "," + imgId2 + ')" id="detailImgP2' + detailImgCount2 + 'id' + imgId2 + '"><img src="${ctx}/image/delete.png" /></p>');
+
 
                 } else {
                     //如果上传失败
@@ -505,6 +571,20 @@
         });
     }
 
+    function detailImgClick2(index, imgId2) {
+        //删除图片的时候有，删除图片还没有保存的情况下，中途打断导致spu图片地址帐脏数据
+        var divDetailImg2 = $('#divDetailImg2' + index);
+        layer.confirm('确认删除?', function (indexConfirm) {
+            layer.close(indexConfirm);
+            layer.msg('删除成功');
+            var detailImgIds2 = $('#detailImgIds2').val() + ",";
+            var idTemp = imgId2 + ",";
+            var idsStr = detailImgIds2.replace(idTemp, "");
+            $('#detailImgIds2').val(idsStr.substr(0, idsStr.length - 1));
+            divDetailImg2.remove();
+        });
+    }
+
     function isNumber(val) {
         var regPos = /^\d+(\.\d+)?$/; //非负浮点数
         var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
@@ -570,6 +650,20 @@
                 <%--<label style="width: 100px; color: red" class="layui-icon" id="add_goods_url">&#xe654;</label>--%>
             </div>
         </div>
+
+        <label class="layui-form-label"><label style="color: red">*</label>添加核对图片：</label>
+        <div class="layui-upload" style="margin-left: 110px;">
+            <button type="button" class="layui-btn" id="detailUpload2">
+                上传核对图片
+            </button>
+            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                预览图：
+                <input type="hidden" id="detailImgIds2" name="detailImgIds2" value="" lay-verify="required"
+                       autocomplete="off">
+                <div class="layui-list" id="detailUploadDiv2" style="overflow: hidden;"></div>
+            </blockquote>
+        </div>
+
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label" style="width: 150px"><label style="color: red">*</label>开始时间:</label>
