@@ -170,12 +170,17 @@ public class PictureAction extends BaseServlet {
         String res = PictureService.isDulplicate(categoryName);
         return StringHandler.getRetString(res);
     }
-
+//添加任务
     public String saveTask(String jsonString,HttpServletRequest req){
         String s = PictureService.addTask(jsonString, req);
         return StringHandler.getRetString(s);
     }
 
+    //编辑任务
+    public String editTask(String jsonString,HttpServletRequest req){
+        String s = PictureService.editTask(jsonString, req);
+        return StringHandler.getRetString(s);
+    }
     public String getUserTaskList(){
 
         String userTaskList = PictureService.getUserTaskList();
