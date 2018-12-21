@@ -242,13 +242,42 @@ public class PictureService extends BaseService{
         String bonus = jsonObject.get("bonus_name").toString();
         String task_url = jsonObject.get("task_url").toString();
         String presell_begintime = Utils.transformToYYMMddHHmmss(jsonObject.get("presell_begintime").toString());
-        String presell_endtime = Utils.transformToYYMMddHHmmss(jsonObject.get("presell_endtime").toString());
+        String presell_endtime = "";
+        Object presell_endtime1 = jsonObject.get("presell_endtime");
+        if(!jsonObject.get("presell_endtime").toString().equals("")){
+            presell_endtime = Utils.transformToYYMMddHHmmss(jsonObject.get("presell_endtime").toString());
+        }
+
         String detail = jsonObject.get("detail").toString();
         int userId = StringHandler.getUserId(req);
         String currentTime = BaseCache.getTIME();
         //category_name,link_adress,remark,bonus,uploader,update_time,create_time,`status`,is_default
         int uid = sendObjectCreate(673,category_name,task_url,detail,bonus,String.valueOf(userId),currentTime,currentTime,0,0,presell_begintime,presell_endtime,detail_img_ids,contrastImgIds);
         String res = ResultPoor.getResult(uid);
+        return res;
+    }
+
+    //编辑任务
+    public static String editTask(String jsonString,HttpServletRequest req){
+        JSONObject jsonObject = JSONObject.parseObject(jsonString);
+        String detail_img_ids = (jsonObject.get("detailImgIds") == null ? "" : (jsonObject.get("detailImgIds").toString()));//详细商品图片
+        String contrastImgIds = (jsonObject.get("detailImgIds2") == null ? "" : (jsonObject.get("detailImgIds2").toString()));//校验图片
+        String category_id = jsonObject.get("taskId").toString();
+        String category_name = jsonObject.get("task_name").toString();
+        String bonus = jsonObject.get("bonus_name").toString();
+        String task_url = jsonObject.get("task_url").toString();
+        String presell_begintime = Utils.transformToYYMMddHHmmss(jsonObject.get("presell_begintime").toString());
+        String presell_endtime = "";
+        if(!jsonObject.get("presell_endtime").toString().equals("")){
+            presell_endtime = Utils.transformToYYMMddHHmmss(jsonObject.get("presell_endtime").toString());
+        }
+        String detail = jsonObject.get("detail").toString();
+        int userId = StringHandler.getUserId(req);
+        String currentTime = BaseCache.getTIME();
+        //category_name,link_adress,remark,bonus,uploader,update_time,create_time,`status`,is_default
+        int uid = sendObjectCreate(673,category_name,task_url,detail,bonus,String.valueOf(userId),currentTime,currentTime,0,0,presell_begintime,presell_endtime,detail_img_ids,contrastImgIds);
+        String res = ResultPoor.getResult(uid);
+        deletePictureInfo(category_id,"1","0");
         return res;
     }
 
