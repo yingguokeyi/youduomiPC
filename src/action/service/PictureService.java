@@ -304,7 +304,7 @@ public class PictureService extends BaseService{
         StringBuffer sql = new StringBuffer();
         sql.append(taskSql.getExamineTaskListPage_sql);
         if (wx_nick_name!=null && !"".equals(wx_nick_name) ){
-            sql.append(" and u.wx_nick_name =").append(wx_nick_name);
+            sql.append(" and u.wx_nick_name LIKE '%").append(wx_nick_name).append("%'");
         }
         if (status!=null && !"".equals(status) ){
             sql.append(" and t.status =").append(status);
@@ -319,5 +319,29 @@ public class PictureService extends BaseService{
         String result = ResultPoor.getResult(sid);
         String resultJson = StringHandler.getRetString(result);
         return resultJson;
+    }
+
+    public static String updateTaskStatus(String status,String task_id,String remarks,int userId){
+        int uId = UserService.checkUserPwdFirstStep(userId);
+        String operator = UserService.selectLoginName(uId);
+        String edit_time= BaseCache.getDateTime();
+//        if("5".equals(status)){
+//            recommendRecord(id);
+//        }
+        int sid = sendObjectCreate(985, status,operator,edit_time,remarks,task_id);
+        String result = ResultPoor.getResult(sid);
+        return result;
+    }
+
+    public static String getUserImg(String task_id){
+        int sid = sendObject(986, PropertiesConf.DETAIL_IMG_URL,task_id);
+        String res = ResultPoor.getResult(sid);
+        return res;
+    }
+
+    public static String getTaskImg(String id){
+        int sid = sendObject(987, PropertiesConf.DETAIL_IMG_URL,id);
+        String res = ResultPoor.getResult(sid);
+        return res;
     }
 }
