@@ -2,6 +2,7 @@ package action;
 
 import action.service.MembersService;
 import action.service.PictureService;
+import action.service.WithdrawalsService;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -11,6 +12,7 @@ import servlet.BaseServlet;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -233,5 +235,23 @@ public class PictureAction extends BaseServlet {
         int pageI = Integer.valueOf(page);
         int end = Integer.valueOf(limit);
         return PictureService.examineTaskList((pageI - 1) * end, end, wx_nick_name,status,start_time,end_time);
+    }
+
+    //修改任务审核状态
+    public String updateTaskStatus(String status, String task_id,String remarks,HttpServletRequest request) {
+        HttpSession session=request.getSession();
+        int userId = Integer.valueOf(session.getAttribute("userId").toString());
+        String res = PictureService.updateTaskStatus(status, task_id,remarks,userId);
+        return res;
+    }
+
+    public String getUserImg(String task_id){
+        String userImg = PictureService.getUserImg(task_id);
+        return StringHandler.getRetString(userImg);
+    }
+
+    public String getTaskImg(String id){
+        String userImg = PictureService.getTaskImg(id);
+        return StringHandler.getRetString(userImg);
     }
 }
