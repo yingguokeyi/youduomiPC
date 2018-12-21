@@ -134,7 +134,7 @@
         <div style="float: left;width: 49%;">
             <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
                 正确信息：
-                <div class="layui-upload-list" id="showUserTaskImgDiv">
+                <div class="layui-upload-list" id="showTaskImgDiv">
 
                 </div>
             </blockquote>
@@ -143,7 +143,7 @@
         <div style="float: right;width: 49%;">
             <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;" >
                 审核信息：
-                <div class="layui-upload-list" id="showTaskImgDiv"></div>
+                <div class="layui-upload-list" id="showUserTaskImgDiv"></div>
             </blockquote>
         </div>
 
