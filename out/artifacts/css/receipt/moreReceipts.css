@@ -1,0 +1,56 @@
+.main_qingkong_title_btn{
+    width: 0.58rem;
+    height: 0.43rem;
+    float: right;
+    background: #fff;
+    color: #666666;
+    font-size: 0.26rem;
+    margin-top: 0.28rem;
+    margin-right: 0.26rem;
+}
+.main,.withdrawal_record{
+	width: 100%;
+	background: #fff;
+}
+.withdrawal_record ul{
+	width: 100%;
+	height: auto;
+}
+.withdrawal_record ul li{
+	width: 100%;
+	border-top: .01rem solid #ebebeb;
+	overflow: hidden;
+	padding: .3rem .26rem;
+}
+.record_infor{
+	width: 80%;
+	float: left;
+}
+.infor_title{
+	width: 100%;
+	font-size: .26rem;
+}
+.infor_title span:nth-child(1){
+	color: #333;
+}
+.record_t i:nth-child(1){
+	color: #fd4848;
+}
+.record_t{
+	margin-left: .4rem;
+}
+.record_time,.record_plan{
+	margin-top: .26rem;
+	color: #999;
+	font-size: .24rem;
+}
+.record_img{
+	width: 20%;
+	float: right;
+	text-align: right;
+}
+.record_img img{
+	width: .14rem;
+	height: .26rem;
+	margin-top: .6rem;
+}

@@ -1,0 +1,12 @@
+.main{
+	width: 100%;
+}
+.receipt_img{
+	width: 100%;
+	text-align: center;
+	margin-top: .46rem;
+}
+.receipt_img img{
+	width: 6.2rem;
+	height: 9.56rem;
+}

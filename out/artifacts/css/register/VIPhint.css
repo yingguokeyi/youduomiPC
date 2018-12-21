@@ -1,0 +1,29 @@
+/* 头部图片 */
+img{
+    width: 100%;
+    height: 100%;
+}
+.head_img {
+    width:1.13rem;
+    height:1.13rem;
+    border-radius: 50%;
+    
+}
+  
+.head_img .large{
+    width:1.13rem;
+    height:1.13rem;
+    border-radius: 50%;
+    margin-left: 3.18rem;
+    margin-top: 1.11rem;
+}
+/* 文字 */
+.ideogram{
+    width: 5.19rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    color: #000000;
+    font-size: 0.3rem;
+    margin-top: 1.5rem;
+    margin-left: 1.22rem;
+}

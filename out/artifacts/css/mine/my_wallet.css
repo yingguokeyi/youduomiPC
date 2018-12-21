@@ -1,0 +1,116 @@
+.main{
+	width: 100%;
+}
+.main_top{
+	width: 100%;
+	background: #fff;
+	padding-top: .2rem;
+	border-bottom: .01rem solid #ebebeb;
+}
+.wallet_total{
+	width: 100%;
+	height: 2.26rem;
+}
+.wallet_btn{
+	width: 100%;
+	margin-top: .2rem;
+	overflow: hidden;
+}
+#wit_btn{
+	width: .7rem;
+	height: .36rem;
+	color: #666;
+	border: .01rem solid #666;
+	border-radius: .06rem;
+	text-align: center;
+	line-height: .36rem;
+	font-size: .24rem;
+	float: right;
+	background: transparent;
+	margin-right: .26rem;
+}
+.wallet_num{
+	width: 100%;
+	text-align: center;
+	margin-top: .3rem;
+}
+.wallet_zo{
+	font-size: .3rem;
+	color: #333;
+	font-weight: 600;
+}
+.wallet_zo span{
+	color: #fd4848;
+	font-size: .48rem;
+	margin-left: .2rem;
+}
+.main_middle{
+	width: 100%;
+	background: #fff;
+}
+.main_middle ul{
+	width: 100%;
+	padding: .36rem 0;
+	overflow: hidden;
+}
+.main_middle ul li{
+	width: 50%;
+	float: left;
+	text-align: center;
+}
+.main_middle ul li p:nth-child(1){
+	font-size: .34rem;
+	color: #333;
+}
+.main_middle ul li p:nth-child(2){
+	font-size: .26rem;
+	color: #666;
+	margin-top: .22rem;
+}
+.mid_line{
+	width: .02rem;
+	height: .36rem;
+	background: #ebebeb;
+	float: right;
+	margin-top: -.7rem;
+}
+.main_bot{
+	width: 100%;
+	height: auto;
+	background: #fff;
+	margin-top: .2rem;
+}
+.main_bot ul{
+	width: 100%;
+	height: auto;
+}
+.main_bot li{
+	width: 100%;
+	height: .9rem;
+	line-height: .9rem;
+	border-bottom: 1px solid #ebebeb;
+}
+a.first_a{
+	display: inline-block;
+	width: 100%;
+	height: .9rem;
+	line-height: .9rem;
+	color: #333;
+	font-size: 0.28rem;
+}
+.first_a span.title_content{
+	float: left;
+	margin-left: 0.26rem;
+}
+
+.first_a span.back_span{
+	height: .9rem;
+    float: right;
+    line-height: .9rem;
+	margin-right: 0.26rem;
+}
+
+.back_span img{
+	width: 0.14rem;
+	height: 0.26rem;
+}

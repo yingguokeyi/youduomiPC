@@ -1,0 +1,178 @@
+
+/* 头部图片 */
+img{
+    width: 100%;
+    height: 100%;
+}
+.head_img {
+    width: 100%;
+    height: 3.5rem;
+}
+    
+.head_img .large{
+    width: 100%;
+    height: 3.5rem;
+}
+
+/* 价格 */
+.Price{
+    width: 100%;
+    height: 2.1rem;
+    overflow: hidden;
+}
+.left_Price{
+    width: 3.3rem;
+    height: 1.3rem;
+    border: 0.02rem solid #e9e9e9;
+    float: left;
+    margin-top: 0.41rem;
+    margin-left: 0.26rem;
+    border-radius: 0.06rem;
+}
+.right_Price{
+    width: 3.3rem;
+    height: 1.3rem;
+    border: 0.02rem solid #e9e9e9;
+    float: left;
+    margin-top: 0.41rem;
+    margin-left: 0.16rem;
+    border-radius: 0.06rem;
+
+}
+.left_word{
+    width: 0.58rem;
+    height: 0.26rem;
+    line-height: 0.26rem;
+    color: #666666;
+    font-size: 0.24rem;
+    margin-left: 1.41rem;
+    margin-top: 0.3rem;
+
+}
+.left_number{
+    width: 1.06rem;
+    height: 0.37rem;
+    line-height: 0.37rem;
+    color: #333333;
+    font-size: 0.32rem;
+    margin-left: 1.18rem;
+    margin-top: 0.18rem;
+    text-decoration:line-through;
+}
+.right_word{
+    width: 0.80rem;
+    height: 0.26rem;
+    line-height: 0.26rem;
+    color: #fd4848;
+    font-size: 0.24rem;
+    margin-left: 1.41rem;
+    margin-top: 0.3rem;
+
+}
+.right_number{
+    width: 1.06rem;
+    height: 0.37rem;
+    line-height: 0.37rem;
+    color: #fd4848;
+    font-size: 0.32rem;
+    margin-left: 1.24rem;
+    margin-top: 0.18rem;
+    text-decoration:line-through;
+}
+/* 分割线 */
+.sky{
+    width: 100%;
+    height: 0.2rem;
+    background-color: #f4f5f9;
+}
+/* 人工通道，自动通道 */
+.Passage{
+    width: 100%;
+    height: 100%;
+}
+.Passage .Artificial_channel{
+    width: 5.94rem;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    background-color: #07a0f8;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.3rem;
+    margin-left: 0.77rem;
+    margin-top: 0.6rem;
+    border-radius: 0.08rem;
+
+}
+.workday{
+    width: 2.90rem;
+    height: 0.56rem;
+    line-height: 0.56rem;
+    color: #666666;
+    font-size: 0.24rem;
+    margin-left: 2.54rem;
+    margin-top: 0.24rem;
+}
+.automatic_channel{
+    width: 5.94rem;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    background-color: #333333;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.3rem;
+    margin-left: 0.77rem;
+    margin-top: 0.6rem;
+    border-radius: 0.08rem;
+
+}
+.skip{
+    width: 0.65rem;
+    height: 0.3rem;
+    line-height: 0.33rem;
+    color: #666666;
+    font-size: 0.24rem;
+    /* text-decoration:underline; */
+    margin-left: 3.52rem;
+    margin-top: 1.16rem;
+}
+.xian{
+    width: 0.49rem;
+    height: 0.01rem;
+    line-height: 0.33rem;
+    background: #666666;
+    margin-left: 3.51rem;
+     
+}
+/*弹框*/
+.warm_title{
+	text-align: center;
+	border-bottom: .01rem solid #ebebeb;
+}
+.warm_title h4{
+	margin: 0;
+	font-size: .3rem;
+	color: #333;
+	margin-top:.34rem;
+}
+.warm_title p{
+	margin: 0;
+	font-size: .26rem;
+	color: #666;
+	margin-bottom: .34rem;
+}
+.warm_choose a{
+	display: inline-block;
+	width:100%;
+	height: .8rem;
+	line-height: .8rem;
+	text-align: center;
+	font-size: .32rem;
+}
+.warm_cancel{
+	color: #666;
+	float: right;
+}
+.warm_login{
+	color: #fd4848;
+	float: left;
+}
