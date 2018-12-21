@@ -119,8 +119,8 @@
                 ,{field:'remark', width:250, title: '任务说明',align:'center'}
                 , {field: 'bonus', width: 150, title: '奖金(元)', align: 'center'}
                 //,{field:'update_time', width:180, title: '编辑时间',align:'center',templet:'#editTimeTmpl'}
-                ,{field:'create_time', width:180, title: '添加时间',align:'center',templet:'#createTimeTmpl'}
                 ,{field:'task_begin_time', width:180, title: '开始时间',align:'center',templet:'#createTimeTmpl'}
+                ,{field:'task_end_time', width:180, title: '结束时间',align:'center',templet:'#endTimeTmpl'}
                 ,{field:'status', width:80, title: '状态',align:'center',templet: '#statusTemplet'}
                 ,{field:'nick_name', width:200, title: '上传人',align:'center'}
                 ,{fixed:'right',title:'操作', width:260,align:'center', toolbar: "#barDemo"}
@@ -189,7 +189,7 @@
                         cache: true,// 不使用ajax缓存
                         contentType: "application/json",
                         url: "${ctx}/picture",
-                        data: "method=updatePictureStatus&status=1&ids=" + ids+"&code=0",
+                        data: "method=updatePictureStatus&status=0&ids=" + ids+"&code=0",
                         dataType: "json",
                         success: function (data) {
                             if (data.success) {
@@ -278,7 +278,7 @@
                         cache: true,// 不使用ajax缓存
                         contentType: "application/json",
                         url: "${ctx}/picture",
-                        data: "method=updatePictureStatus&status=0&ids=" + ids+"&code=0",
+                        data: "method=updatePictureStatus&status=1&ids=" + ids+"&code=0",
                         dataType: "json",
                         success: function (data) {
                             if (data.success) {
@@ -312,8 +312,8 @@
             var remark = obj.data.remark;
             var bonus = obj.data.bonus;
             var status = obj.data.status;
-            var createTime = obj.data.create_time;
-            var taskBeginTime = obj.data.task_begin_time;
+            var createTime = obj.data.task_begin_time;
+            var taskBeginTime = obj.data.task_end_time;
             var id = obj.data.id;
             if (obj.event === 'statusEdit') {
                 window.location.href = "${ctx}/picture/editTask.jsp?id="+id+"&categoryName="+categoryName+"&linkAddress="+linkAddress+"&remark="+remark
@@ -571,9 +571,9 @@
 </script>
 <%--状态--%>
 <script type="text/html" id="statusTemplet">
-    {{#  if(d.status === '1'){ }}
+    {{#  if(d.status === '0'){ }}
     <span><font color="#32cd32">启用</font></span>
-    {{#  } else if(d.status === '0'){ }}
+    {{#  } else if(d.status === '1'){ }}
     <span><font color="red">停用</font></span>
     {{#  } }}
 </script>
@@ -587,10 +587,18 @@
 </script>
 <!--创建时间 -->
 <script type="text/html" id="createTimeTmpl">
-    {{# if(d.create_time ==''){}}
+    {{# if(d.task_begin_time ==''){}}
     <span style="color: rgba(10,10,10,0.46);text-align: center;width: 100%;height: 100%;display: inline-block;"> ----</span>
     {{# }else { }}
-    20{{ d.create_time.substr(0,2) }}-{{ d.create_time.substr(2,2) }}-{{ d.create_time.substr(4,2) }} {{ d.create_time.substr(6,2) }}:{{ d.create_time.substr(8,2) }}:{{ d.create_time.substr(10,2) }}
+    20{{ d.task_begin_time.substr(0,2) }}-{{ d.task_begin_time.substr(2,2) }}-{{ d.task_begin_time.substr(4,2) }} {{ d.task_begin_time.substr(6,2) }}:{{ d.task_begin_time.substr(8,2) }}:{{ d.task_begin_time.substr(10,2) }}
+    {{# } }}
+</script>
+
+<script type="text/html" id="endTimeTmpl">
+    {{# if(d.task_end_time ==''){}}
+    <span style="color: rgba(10,10,10,0.46);text-align: center;width: 100%;height: 100%;display: inline-block;"> ----</span>
+    {{# }else { }}
+    20{{ d.task_end_time.substr(0,2) }}-{{ d.task_end_time.substr(2,2) }}-{{ d.task_end_time.substr(4,2) }} {{ d.task_end_time.substr(6,2) }}:{{ d.task_end_time.substr(8,2) }}:{{ d.task_end_time.substr(10,2) }}
     {{# } }}
 </script>
 <!-- 操作 -->

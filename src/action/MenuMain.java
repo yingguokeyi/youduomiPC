@@ -34,17 +34,17 @@ public class MenuMain extends BaseServlet{
         }
         ViewButton cbt=new ViewButton();
         cbt.setUrl(youduom_url+"wechatService?method=OAuthOne");
-        cbt.setName("升级会员");
+        cbt.setName("去做任务");
         cbt.setType("view");
 
         ViewButton xiaopcheck=new ViewButton();
         xiaopcheck.setUrl(youduom_url+"wechatService?method=receipt");
-        xiaopcheck.setName("小票查询");
+        xiaopcheck.setName("任务查询");
         xiaopcheck.setType("view");
 
         ViewButton xiaopupload=new ViewButton();
         xiaopupload.setUrl(youduom_url+"wechatService?method=toUploadReceipts");
-        xiaopupload.setName("小票上传");
+        xiaopupload.setName("去做任务");
         xiaopupload.setType("view");
 
 

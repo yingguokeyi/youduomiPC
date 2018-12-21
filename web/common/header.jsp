@@ -10,7 +10,7 @@
 
             <li class="layui-nav-item"><a href="${ctx}/member/member_manage.jsp">会员管理</a></li>
             <%--<li class="layui-nav-item"><a href="${ctx}/advertising/advertisingData.jsp">广告管理</a></li>--%>
-            <li class="layui-nav-item"><a href="${ctx}/bill/bill_list.jsp">小票管理</a></li>
+            <%--<li class="layui-nav-item"><a href="${ctx}/bill/bill_list.jsp">小票管理</a></li>--%>
             <li class="layui-nav-item"><a href="${ctx}/picture/picture_category.jsp">任务管理</a></li>
             <li class="layui-nav-item"><a href="${ctx}/withdrawals/withdrawals_list.jsp">提现管理</a></li>
             <%--<li class="layui-nav-item">--%>

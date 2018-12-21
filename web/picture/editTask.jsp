@@ -34,8 +34,10 @@
     var id="<%=id%>";
     var ct = "20"+createTime.substr(0,2)+"-"+createTime.substr(2,2)+"-"+createTime.substr(4,2)+" "+createTime.substr(6,2)+":"+createTime.substr(8,2)+":"+createTime.substr(10,2);
     var beginTime = "<%=beginTime%>";
-    var bg = "20"+beginTime.substr(0,2)+"-"+beginTime.substr(2,2)+"-"+beginTime.substr(4,2)+" "+beginTime.substr(6,2)+":"+beginTime.substr(8,2)+":"+beginTime.substr(10,2);
-
+    var bg="";
+    if(beginTime !=undefined && beginTime!="") {
+        bg = "20" + beginTime.substr(0, 2) + "-" + beginTime.substr(2, 2) + "-" + beginTime.substr(4, 2) + " " + beginTime.substr(6, 2) + ":" + beginTime.substr(8, 2) + ":" + beginTime.substr(10, 2);
+    }
     function Map() {
         this.mapArr = {};
         this.arrlength = 0;

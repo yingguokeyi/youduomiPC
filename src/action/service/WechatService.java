@@ -206,6 +206,15 @@ public class WechatService extends BaseServlet {
         }
     }
 
+    public static void receipt(HttpServletRequest request, HttpServletResponse response,JSONArray rs){
+        try {
+            String openid = rs.getJSONObject(0).getString("openid");
+            response.sendRedirect(request.getContextPath()+"/wechat/receipt.jsp?openid="+openid);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public static void toUploadReceipts(HttpServletRequest request, HttpServletResponse response,JSONArray rs){
         try {
             String openid = rs.getJSONObject(0).getString("openid");
@@ -216,12 +225,5 @@ public class WechatService extends BaseServlet {
 
     }
 
-    public static void receipt(HttpServletRequest request, HttpServletResponse response,JSONArray rs){
-        try {
-            String openid = rs.getJSONObject(0).getString("openid");
-            response.sendRedirect(request.getContextPath()+"/wechat/receipt.jsp?openid="+openid);
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
+
 }

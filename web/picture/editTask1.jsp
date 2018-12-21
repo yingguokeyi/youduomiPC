@@ -33,8 +33,11 @@
     var createTime = "<%=createTime%>";
     var id="<%=id%>";
     var ct = "20"+createTime.substr(0,2)+"-"+createTime.substr(2,2)+"-"+createTime.substr(4,2)+" "+createTime.substr(6,2)+":"+createTime.substr(8,2)+":"+createTime.substr(10,2)
-    var beginTime = "<%=beginTime%>"
-    var bg = "20"+beginTime.substr(0,2)+"-"+beginTime.substr(2,2)+"-"+beginTime.substr(4,2)+" "+beginTime.substr(6,2)+":"+beginTime.substr(8,2)+":"+beginTime.substr(10,2);
+    var beginTime = "<%=beginTime%>";
+    var bg="";
+    if(beginTime !=undefined && beginTime!="") {
+         bg = "20" + beginTime.substr(0, 2) + "-" + beginTime.substr(2, 2) + "-" + beginTime.substr(4, 2) + " " + beginTime.substr(6, 2) + ":" + beginTime.substr(8, 2) + ":" + beginTime.substr(10, 2);
+    }
     function Map() {
         this.mapArr = {};
         this.arrlength = 0;
@@ -632,7 +635,7 @@
 
             $.ajax({
                 type: "get",
-                url: "${ctx}/picture?method=saveTask",
+                url: "${ctx}/picture?method=editTask",
                 //data: "method=addSPU&jsonString="+JSON.stringify($('form').serializeObject()),
                 data: {jsonString: JSON.stringify($('form').serializeObject())},
                 contentType: "application/json",  //缺失会出现URL编码，无法转成json对象
@@ -791,6 +794,7 @@
     </div>
     <form enctype="multipart/form-data">
         <input type="hidden" value="1" id="standard">
+        <input type="hidden" value="<%=id%>" id="taskId" name="taskId">
         <div class="layui-form-item">
             <label class="layui-form-label"><label style="color: red">*</label>任务名称: </label>
             <div class="layui-input-block">
