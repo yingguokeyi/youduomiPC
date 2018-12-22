@@ -268,16 +268,29 @@ public class PictureService extends BaseService{
         String task_url = jsonObject.get("task_url").toString();
         String presell_begintime = Utils.transformToYYMMddHHmmss(jsonObject.get("presell_begintime").toString());
         String presell_endtime = "";
+        String currentTime = BaseCache.getTIME();
         if(!jsonObject.get("presell_endtime").toString().equals("")){
             presell_endtime = Utils.transformToYYMMddHHmmss(jsonObject.get("presell_endtime").toString());
+            //判断编辑任务时间 任务延后的 用户任务状态过期修改为 未领取
+            if (Integer.parseInt(currentTime.substring(0,6)) <  Integer.valueOf(presell_endtime.substring(0,6))){
+                upUserTaskStatus(category_id);
+            }
+
         }
         String detail = jsonObject.get("detail").toString();
         int userId = StringHandler.getUserId(req);
-        String currentTime = BaseCache.getTIME();
+
         //category_name,link_adress,remark,bonus,uploader,update_time,create_time,`status`,is_default
         int uid = sendObjectCreate(680,category_name,task_url,detail,bonusResult,String.valueOf(userId),currentTime,currentTime,0,0,presell_begintime,presell_endtime,detail_img_ids,contrastImgIds,category_id);
         String res = ResultPoor.getResult(uid);
         return res;
+    }
+
+    public static void upUserTaskStatus(String category_id){
+
+        int sid = sendObjectCreate(989, 0,category_id);
+        String result = ResultPoor.getResult(sid);
+
     }
 
     public static String getUserTaskList(){
