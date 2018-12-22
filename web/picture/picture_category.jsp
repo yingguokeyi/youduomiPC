@@ -117,7 +117,14 @@
                 ,{field:'category_name', width:300, title: '任务名称',align:'center'}
                 ,{field:'link_adress', width:150, title: '链接',align:'center'}
                 ,{field:'remark', width:250, title: '任务说明',align:'center'}
-                , {field: 'bonus', width: 150, title: '奖金(元)', align: 'center'}
+                , {field: 'bonus', width: 150, title: '奖金(元)', align: 'center',templet: function (d) {
+                        if (d.bonus == "0") {
+                            return "￥" + d.bonus;
+                        }
+                        else {
+                            return "￥" + d.bonus/100;
+                        }
+                    }}
                 //,{field:'update_time', width:180, title: '编辑时间',align:'center',templet:'#editTimeTmpl'}
                 ,{field:'task_begin_time', width:180, title: '开始时间',align:'center',templet:'#createTimeTmpl'}
                 ,{field:'task_end_time', width:180, title: '结束时间',align:'center',templet:'#endTimeTmpl'}
@@ -224,7 +231,7 @@
                     var ids = new Array(selectCount);
                     for (var i = 0; i < selectCount; i++) {
                         ids[i] = checkStatus.data[i].id;
-                        if (checkStatus.data[i].status == "1") {
+                        if (checkStatus.data[i].status == "0") {
                             layer.msg(checkStatus.data[i].picture_name + "  正在启用 请禁用之后再删除");
                             return false;
                         }
@@ -311,17 +318,24 @@
             var linkAddress = obj.data.link_adress;
             var remark = obj.data.remark;
             var bonus = obj.data.bonus;
+            var resultBonus;
+            if (bonus == "0") {
+                resultBonus = bonus;
+            }
+            else {
+                resultBonus = bonus/100;
+            }
             var status = obj.data.status;
             var createTime = obj.data.task_begin_time;
             var taskBeginTime = obj.data.task_end_time;
             var id = obj.data.id;
             if (obj.event === 'statusEdit') {
                 window.location.href = "${ctx}/picture/editTask.jsp?id="+id+"&categoryName="+categoryName+"&linkAddress="+linkAddress+"&remark="+remark
-                +"&bonus="+bonus+"&status="+status+"&createTime="+createTime+"&beginTime="+taskBeginTime;
+                +"&bonus="+resultBonus+"&status="+status+"&createTime="+createTime+"&beginTime="+taskBeginTime;
             }
             if (obj.event === 'statusEdit1') {
                 window.location.href = "${ctx}/picture/editTask1.jsp?id="+id+"&categoryName="+categoryName+"&linkAddress="+linkAddress+"&remark="+remark
-                    +"&bonus="+bonus+"&status="+status+"&createTime="+createTime+"&beginTime="+taskBeginTime;
+                    +"&bonus="+resultBonus+"&status="+status+"&createTime="+createTime+"&beginTime="+taskBeginTime;
             }
             if (obj.event === 'statusDelete') {
                 console.log(obj.data.status);
