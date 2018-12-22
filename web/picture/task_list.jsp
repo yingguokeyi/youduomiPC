@@ -148,7 +148,7 @@
                 layer.prompt({
                     formType: 2,
                     value: '',
-                    maxlength: 180,
+                    maxlength: 72,
                     title: '拒绝原因',
                     area: ['400px', '150px'] //自定义文本域宽高
                 }, function(value, index){
@@ -160,7 +160,6 @@
                     }
                     remarks = value;
                     layer.close(index);
-                    alert(remarks);
                     $.ajax({
                         //几个参数需要注意一下
                         type: "post",//方法类型

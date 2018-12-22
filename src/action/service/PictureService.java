@@ -307,7 +307,7 @@ public class PictureService extends BaseService{
 //        for (String id : arr) {
 //            sid = sendObject(984, PropertiesConf.DETAIL_IMG_URL,id);
 //        }
-        int sid = sendObject(984, PropertiesConf.DETAIL_IMG_URL,id);
+        int sid = sendObject(984, PropertiesConf.IMG_URL_PREFIX,id);
         String res = ResultPoor.getResult(sid);
         return res;
     }
@@ -346,13 +346,13 @@ public class PictureService extends BaseService{
     }
 
     public static String getUserImg(String task_id){
-        int sid = sendObject(986, PropertiesConf.DETAIL_IMG_URL,task_id);
+        int sid = sendObject(986, PropertiesConf.IMG_URL_PREFIX,task_id);
         String res = ResultPoor.getResult(sid);
         return res;
     }
 
     public static String getTaskImg(String id){
-        int sid = sendObject(987, PropertiesConf.DETAIL_IMG_URL,id);
+        int sid = sendObject(987, PropertiesConf.IMG_URL_PREFIX,id);
         String res = ResultPoor.getResult(sid);
         return res;
     }
