@@ -115,14 +115,19 @@
                 var task_id = obj.task_id;
                 var status = 5;
                 var remarks = '';
+                var bonus = obj.bonus;
+                var id = obj.id;
 
                 $.ajax({
                     //几个参数需要注意一下
                     type: "post",//方法类型
                     dataType: "json",//预期服务器返回的数据类型
-                    url: "${ctx}/picture?method=updateTaskStatus&status=" + status +"&task_id="+task_id +"&remarks="+remarks,//url
+                    url: "${ctx}/picture?method=updateTaskStatus&status=" + status +"&id="+task_id +"&task_id="+id +"&remarks="+remarks+"&bonus="+bonus,//url
                     async: true,
-                    data: {task_id: task_id},
+                    data: {task_id: task_id,
+                        bonus:bonus,
+                        id:id
+                    },
                     success: function (res) {
                         var obj = JSON.parse(JSON.stringify(res));
                         if (obj.success == 1) {
