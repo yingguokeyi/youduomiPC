@@ -243,10 +243,10 @@ public class PictureAction extends BaseServlet {
     }
 
     //修改任务审核状态
-    public String updateTaskStatus(String status, String task_id,String remarks,HttpServletRequest request) {
+    public String updateTaskStatus(String status, String id,String task_id,String remarks,String bonus,HttpServletRequest request) {
         HttpSession session=request.getSession();
         int userId = Integer.valueOf(session.getAttribute("userId").toString());
-        String res = PictureService.updateTaskStatus(status, task_id,remarks,userId);
+        String res = PictureService.updateTaskStatus(status, id,task_id,remarks,bonus,userId);
         return res;
     }
 

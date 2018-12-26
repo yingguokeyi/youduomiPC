@@ -333,16 +333,57 @@ public class PictureService extends BaseService{
         return resultJson;
     }
 
-    public static String updateTaskStatus(String status,String task_id,String remarks,int userId){
+    public static String updateTaskStatus(String status,String id,String task_id,String remarks,String bonus,int userId){
         int uId = UserService.checkUserPwdFirstStep(userId);
         String operator = UserService.selectLoginName(uId);
         String edit_time= BaseCache.getDateTime();
-//        if("5".equals(status)){
-//            recommendRecord(id);
-//        }
-        int sid = sendObjectCreate(985, status,operator,edit_time,remarks,task_id);
+        if("5".equals(status)){
+            rebate(id,task_id,bonus);
+        }
+        int sid = sendObjectCreate(985, status,operator,edit_time,remarks,id);
         String result = ResultPoor.getResult(sid);
         return result;
+    }
+
+    public static void rebate(String id,String task_id,String bonus){
+        int sid = sendObject(991,id);
+        String result = ResultPoor.getResult(sid);
+        String resultJson = StringHandler.getRetString(result);
+        JSONObject json = JSONObject.parseObject(resultJson.toString());
+        int rs = json.getJSONArray("rs").size();
+        if (rs > 0){
+            String userId = json.getJSONArray("rs").getJSONObject(0).getString("id");
+            String parent_user_id = json.getJSONArray("rs").getJSONObject(0).getString("parent_user_id");
+
+            String edit_time= BaseCache.getDateTime();
+            //有上级邀请人
+            if (parent_user_id != null && !"".equals(parent_user_id) && !"0".equals(parent_user_id)){
+
+                int sid2 = sendObject(956,parent_user_id);
+                String result2 = ResultPoor.getResult(sid2);
+                String resultJson2 = StringHandler.getRetString(result2);
+                JSONObject json2 = JSONObject.parseObject(resultJson2.toString());
+                int money = Integer.parseInt(json2.getJSONArray("rs").getJSONObject(0).getString("money"));
+                int balance =  Integer.parseInt(json2.getJSONArray("rs").getJSONObject(0).getString("balance"));
+
+//            sendObjectCreate(992, bonus,edit_time, id);
+                sendObjectCreate(993, parent_user_id,userId,task_id,bonus,"2",edit_time);
+                sendObjectCreate(957, money+10,balance+10,parent_user_id);
+            }
+
+            int sid3 = sendObject(956,userId);
+            String result3 = ResultPoor.getResult(sid3);
+            String resultJson3 = StringHandler.getRetString(result3);
+            JSONObject json3 = JSONObject.parseObject(resultJson3.toString());
+            int money = Integer.parseInt(json3.getJSONArray("rs").getJSONObject(0).getString("money"));
+            int balance =  Integer.parseInt(json3.getJSONArray("rs").getJSONObject(0).getString("balance"));
+
+//            sendObjectCreate(992, bonus,edit_time, id);
+            int i = sendObjectCreate(993, userId,null, task_id, bonus, "1", edit_time);
+            String res = ResultPoor.getResult(i);
+            sendObjectCreate(957, money+Integer.valueOf(bonus),balance+Integer.valueOf(bonus),userId);
+        }
+
     }
 
     public static String getUserImg(String task_id){
