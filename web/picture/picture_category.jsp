@@ -643,14 +643,14 @@
                         <div class="layui-input-inline" >
                             <select id="status" name="status" lay-filter="statusI">
                                 <option value=""></option>
-                                <option value="1">启用</option>
-                                <option value="0">禁用</option>
+                                <option value="0">启用</option>
+                                <option value="1">禁用</option>
                             </select>
                         </div>
 
                     </div>
 
-                    <label class="layui-form-label" style="width: 120px">创建时间</label>
+                    <label class="layui-form-label" style="width: 120px">开始时间</label>
                     <div class="layui-input-inline" >
                         <input name="edit_time" id="edit_time" placeholder="开始日期" autocomplete="off" class="layui-input" type="text" placeholder="yyyy-MM-dd HH:mm:ss">
                     </div>

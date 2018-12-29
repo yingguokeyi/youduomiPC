@@ -24,14 +24,14 @@ public class PictureService extends BaseService{
         StringBuffer sql = new StringBuffer();
         //查询条件
         if (pictureName != null && !pictureName.equals("")) {
-            sql.append(" AND p.category_name LIKE '%").append(pictureName).append("%'");
+            sql.append(" AND category_name LIKE '%").append(pictureName).append("%'");
         }
         if (status != null && !status.equals("")) {
-            sql.append(" AND p.status = '").append(status).append("'");
+            sql.append(" AND status = '").append(status).append("'");
         }
         if (edit_time != null && !"".equals(edit_time)) {
             String created_date1 = Utils.transformToYYMMddHHmmss(edit_time);
-            sql.append(" and p.create_time between '").append(created_date1).append("'");
+            sql.append(" and task_begin_time between '").append(created_date1).append("'");
         }
         if (editend_time != null && !"".equals(editend_time)) {
             String created_date1 = Utils.transformToYYMMddHHmmss(editend_time);
