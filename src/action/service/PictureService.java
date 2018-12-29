@@ -327,6 +327,7 @@ public class PictureService extends BaseService{
             System.out.println(bDate);
             sql.append(" and t.submit_date BETWEEN ").append(bDate).append(" and ").append(eDate);
         }
+        sql.append(" order by t.submit_date desc ");
         int sid = BaseService.sendObjectBase(9997,sql.toString(),page,limit);
         String result = ResultPoor.getResult(sid);
         String resultJson = StringHandler.getRetString(result);
@@ -367,7 +368,7 @@ public class PictureService extends BaseService{
                 int balance =  Integer.parseInt(json2.getJSONArray("rs").getJSONObject(0).getString("balance"));
 
 //            sendObjectCreate(992, bonus,edit_time, id);
-                sendObjectCreate(993, parent_user_id,userId,task_id,bonus,"2",edit_time);
+                sendObjectCreate(993, parent_user_id,userId,task_id,"10","2",edit_time);
                 sendObjectCreate(957, money+10,balance+10,parent_user_id);
             }
 
@@ -379,7 +380,7 @@ public class PictureService extends BaseService{
             int balance =  Integer.parseInt(json3.getJSONArray("rs").getJSONObject(0).getString("balance"));
 
 //            sendObjectCreate(992, bonus,edit_time, id);
-            int i = sendObjectCreate(993, userId,null, task_id, bonus, "1", edit_time);
+            int i = sendObjectCreate(993, userId,"", task_id, bonus, "1", edit_time);
             String res = ResultPoor.getResult(i);
             sendObjectCreate(957, money+Integer.valueOf(bonus),balance+Integer.valueOf(bonus),userId);
         }
