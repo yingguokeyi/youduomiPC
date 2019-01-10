@@ -6,6 +6,7 @@
         <ul class="layui-nav layui-nav-tree"  lay-filter="test">
             <li class="layui-nav-item layui-nav-itemed">
                 <dl class="layui-nav-child">
+                    <dd><a href="publishTask.jsp">任务发布</a></dd>
                     <dd><a href="picture_category.jsp">任务管理</a></dd>
                     <dd><a href="taskQuery.jsp">任务查询</a></dd>
                     <dd><a href="task_list.jsp">任务审核</a></dd>

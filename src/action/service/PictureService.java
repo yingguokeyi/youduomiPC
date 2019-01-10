@@ -46,6 +46,43 @@ public class PictureService extends BaseService{
 
     /**
      *
+     * @return
+     */
+    public static String getConsumerTask(String nickName, String status, String edit_time, String editend_time, String taskId,int begin, int end){
+        StringBuffer sql = new StringBuffer();
+
+        //查询条件
+        if (nickName != null && !nickName.equals("")) {
+            int userId = UserService.getUserId(nickName);
+            sql.append(" AND p.uploader ='").append(userId).append("'");
+        }
+        if (status != null && !status.equals("")) {
+            sql.append(" AND p.status = '").append(status).append("'");
+        }
+        if (taskId != null && !taskId.equals("")) {
+            sql.append(" AND p.id = '").append(taskId).append("'");
+        }
+        if (edit_time != null && !"".equals(edit_time)) {
+            String created_date1 = Utils.transformToYYMMddHHmmss(edit_time);
+            sql.append(" and p.task_begin_time between '").append(created_date1).append("'");
+        }
+        if (editend_time != null && !"".equals(editend_time)) {
+            String created_date1 = Utils.transformToYYMMddHHmmss(editend_time);
+            sql.append(" and '").append(created_date1).append("'");
+        }
+
+        sql.append(" order by p.create_time desc ");
+        int sid = sendObjectBase(681, sql.toString(),begin,end);
+        String res = ResultPoor.getResult(sid);
+        return res;
+    }
+
+    /*public static String updateTask(String taskId,String status){
+
+    }*/
+
+    /**
+     *
      * @param request
      * @param categoryName
      * @return
@@ -144,13 +181,13 @@ public class PictureService extends BaseService{
      * @param status
      * @return
      */
-    public static String updatePictureStatus(String ids,String status,String code){
+    public static String updatePictureStatus(String ids,String status,String code,String reason){
         String result = null;
         if("0".equals(code)){
             String[] arr = ids.split(",");
             int sid = 0;
             for (String id : arr) {
-                sid = sendObjectCreate(671, status, id);
+                sid = sendObjectCreate(671, status, reason,id);
             }
             result = ResultPoor.getResult(sid);
         }else {

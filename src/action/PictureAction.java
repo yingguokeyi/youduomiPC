@@ -112,8 +112,8 @@ public class PictureAction extends BaseServlet {
         return StringHandler.getRetString(res);
     }
 
-    public String updatePictureStatus(String ids,String status,String code){
-        String res = PictureService.updatePictureStatus(ids,status,code);
+    public String updatePictureStatus(String ids,String status,String code,String reason){
+        String res = PictureService.updatePictureStatus(ids,status,code,reason);
         return StringHandler.getRetString(res);
     }
 
@@ -259,4 +259,22 @@ public class PictureAction extends BaseServlet {
         String userImg = PictureService.getTaskImg(id);
         return StringHandler.getRetString(userImg);
     }
+
+    /**
+     * 查询任务发布列表
+     *
+     * @return
+     */
+    public String getConsumerTaskList(String nickName, String status, String edit_time, String editend_time, String taskId,String page, String limit) {
+        int pageI = (page == null ? 1 : Integer.valueOf(page));
+        int limitI = (limit == null ? 10 : Integer.valueOf(limit));
+        String res = PictureService.getConsumerTask(nickName,status,edit_time,editend_time,taskId,(pageI - 1) * limitI, limitI);
+        return StringHandler.getRetString(res);
+
+    }
+
+    /*public String updateTaskList(String taskId,String status){
+
+    }*/
+
 }

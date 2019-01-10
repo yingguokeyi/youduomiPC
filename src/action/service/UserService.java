@@ -32,6 +32,17 @@ public class UserService extends BaseService {
     }
 
     /**
+     *
+     * @param nickName
+     * @return int
+     */
+    public static int getUserId(String nickName){
+        int sid = sendObject(682,nickName);
+        int userId = (int) getFieldValue(ResultPoor.getResult(sid), "id", Integer.class);
+        return userId;
+    }
+
+    /**
      * @param @param  token
      * @param @return 参数
      * @return String    返回类型
