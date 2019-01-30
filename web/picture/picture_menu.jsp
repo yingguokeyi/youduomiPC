@@ -10,6 +10,8 @@
                     <dd><a href="picture_category.jsp">任务管理</a></dd>
                     <dd><a href="taskQuery.jsp">任务查询</a></dd>
                     <dd><a href="task_list.jsp">任务审核</a></dd>
+                    <dd><a href="user_task.jsp">客户任务管理</a></dd>
+
                 </dl>
             </li>
         </ul>
