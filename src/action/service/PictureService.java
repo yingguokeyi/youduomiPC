@@ -37,7 +37,7 @@ public class PictureService extends BaseService{
             String created_date1 = Utils.transformToYYMMddHHmmss(editend_time);
             sql.append(" and '").append(created_date1).append("'");
         }
-
+        sql.append(" and source = 0 ");
         sql.append(" order by create_time desc ");
         int sid = sendObjectBase(670, sql.toString(),begin,end);
         String res = ResultPoor.getResult(sid);
@@ -288,7 +288,7 @@ public class PictureService extends BaseService{
         int userId = StringHandler.getUserId(req);
         String currentTime = BaseCache.getTIME();
         //category_name,link_adress,remark,bonus,uploader,update_time,create_time,`status`,is_default
-        int uid = sendObjectCreate(673,category_name,task_url,detail,bonusResult,String.valueOf(userId),currentTime,currentTime,0,0,presell_begintime,presell_endtime,detail_img_ids,contrastImgIds);
+        int uid = sendObjectCreate(673,category_name,task_url,detail,bonusResult,String.valueOf(userId),currentTime,currentTime,0,0,presell_begintime,presell_endtime,detail_img_ids,contrastImgIds,1);
         String res = ResultPoor.getResult(uid);
         return res;
     }

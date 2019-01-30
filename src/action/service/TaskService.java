@@ -4,11 +4,11 @@ import action.sqlhelper.BillSql;
 import cache.ResultPoor;
 import com.alibaba.fastjson.JSONObject;
 import common.BaseCache;
+import common.PropertiesConf;
 import common.StringHandler;
 import common.Utils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by 18330 on 2018/11/8.
@@ -204,4 +204,84 @@ public class TaskService extends BaseService {
         json.put("img2",list2);
         return json.toString();
     }
+
+    public static String getUserTaskInfo(int page,int limit,String user_id,String phone,String status,String start_time,String end_time){
+        StringBuffer sql = new StringBuffer();
+        sql.append(BillSql.getUserTaskPage_sql);
+        if (user_id!=null && !"".equals(user_id) ){
+            sql.append(" and p.uploader =").append(user_id);
+        }
+        if (phone!=null && !"".equals(phone) ){
+            sql.append(" and t.phone =").append(phone);
+        }
+        if (status!=null && !"".equals(status) ){
+            sql.append(" and p.status =").append(status);
+        }
+
+        if ((start_time != null && !"".equals(start_time)) || (end_time!=null && !"".equals(end_time))) {
+            String bDate = Utils.transformToYYMMddHHmmss(start_time);
+            String eDate = Utils.transformToYYMMddHHmmss(end_time);
+            System.out.println(bDate);
+            sql.append(" and p.create_time BETWEEN ").append(bDate).append(" and ").append(eDate);
+        }
+        sql.append(" ORDER BY p.create_time desc");
+        int sid = BaseService.sendObjectBase(9997,sql.toString(),page,limit);
+        String result = ResultPoor.getResult(sid);
+        String resultJson = StringHandler.getRetString(result);
+        return resultJson;
+    }
+
+    public static HashMap<String,Object> getUseUploadImg(String id){
+        int i = sendObject(1015,id);
+        String result = ResultPoor.getResult(i);
+        JSONObject userList = JSONObject.parseObject(result);
+        JSONObject jsonObject = userList.getJSONObject("result").getJSONArray("rs").getJSONObject(0);
+        String remark = jsonObject.getString("remark");
+
+        HashMap<String,Object> map = new HashMap<String,Object>();
+
+        if(!"".equals(remark) && remark != null){
+            JSONObject jsStr = JSONObject.parseObject(remark);
+            int size1 = jsStr.size();
+            List<Object> listAll = new ArrayList<Object>();
+
+            for (int n=1;n<=size1;n++){
+                String ids = jsStr.getJSONObject(String.valueOf(n)).getString("ids");
+                String substring = ids.substring(1, ids.length() - 1);
+                List<String> lis = Arrays.asList(substring.split(","));
+                List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+                for (String string : lis) {
+                    HashMap<String,Object> resultMap = new HashMap<String,Object>();
+                    int sid = sendObject(979, PropertiesConf.IMG_URL_PREFIX,string);
+                    String result2 = ResultPoor.getResult(sid);
+                    JSONObject imgUrl = JSONObject.parseObject(result2);
+                    String image = imgUrl.getJSONObject("result").getJSONArray("rs").getJSONObject(0).getString("image");
+                    resultMap.put("image",image);
+                    list.add(resultMap);
+                }
+                listAll.add(list);
+            }
+            map.put("result",listAll);
+            return map;
+
+        }
+        return null;
+    }
+
+    public static String getUseRexamineImg(String id){
+        int sid = sendObject(987, PropertiesConf.IMG_URL_PREFIX,id);
+        String res = ResultPoor.getResult(sid);
+        return res;
+    }
+
+
+    public static String updateUserTaskStatus(String status,String task_end_time,String refusal_reasons,String id){
+        String edit_time= BaseCache.getDateTime();
+        String substringTime = String.valueOf(Integer.valueOf(edit_time.substring(0, 6))+1)+"000000";
+
+        int sid = sendObjectCreate(1016,edit_time,substringTime,status,refusal_reasons,id);
+        String result = ResultPoor.getResult(sid);
+        return result;
+    }
+
 }
